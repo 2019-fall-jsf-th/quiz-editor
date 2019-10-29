@@ -350,7 +350,15 @@
   </div>
 
   <!-- Resources -->
-  <h2>Resources</h2>
+  <h2
+    [style.background-color1]="'red'"
+    [style.background-color]="myBackgroundColorProperty"
+    [attr.title1]="titleTooltip"
+    [title]="titleTooltip"
+    [innerHTML]="myBackgroundColorProperty"
+  >
+    Resources
+  </h2>
   <p>Here are some links to help you get started:</p>
 
   <div class="card-container">
