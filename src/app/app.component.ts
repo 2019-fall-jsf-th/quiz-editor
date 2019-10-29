@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QuizService } from './quiz.service';
+import { QuizService, QuizDisplay } from './quiz.service';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +10,8 @@ export class AppComponent implements OnInit {
   title = 'quiz-editor';
 
   myBackgroundColorProperty = "purple";
-  quizzes = [];
-  
+  quizzes: QuizDisplay[] = [];
+
   ngOnInit() {
     this.myBackgroundColorProperty = Math.random() > 0.5 ? 'yellow' : 'green';
     this.quizzes = this.qSvc.loadQuizzes();
