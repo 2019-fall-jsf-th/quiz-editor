@@ -22,6 +22,11 @@ export class AppComponent implements OnInit {
   }
 
   constructor(private qSvc: QuizService) {
+  }
 
+  selectedQuiz: QuizDisplay = undefined;
+
+  selectQuiz(q: QuizToDisplay) {
+    this.selectedQuiz = q;
   }
 }
