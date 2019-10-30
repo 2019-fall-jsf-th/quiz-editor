@@ -1,36 +1,34 @@
 <div class="container" style="margin: 20px;">
   <div class="row">
     <div class="col-md-4">
-      <button
-        class="btn btn-outline-success mb-3"
-      >
+      <button class="btn btn-outline-success mb-3">
         Add New Quiz
       </button>
       <div class="list-group mb-3">
-        <div 
-          class="list-group-item d-flex justify-content-between align-items-center"
-          *ngFor="let q of quizzes"
-          (click)="selectQuiz(q)"
-          [class.active]="q == selectedQuiz"
-        >
+        <div class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let q of quizzes"
+          (click)="selectQuiz(q)" [class.active]="q == selectedQuiz">
           {{ q.name }}
-          <small 
-            class="font-italic font-weight-lighter"
-          >
+          <small class="font-italic font-weight-lighter">
             {{ q.numberOfQuestions }} questions
           </small>
         </div>
       </div>
     </div>
-    <div class="col-md-8">
-      <button
-        class="btn btn-outline-dark mb-3"
-      >
+    <div class="col-md-8" *ngIf="selectedQuiz == undefined">
+      <div class="card text-white bg-secondary mb-3">
+        <div class="card-body">
+          <h5 class="card-title">No Quiz Selected</h5>
+          <p class="card-text">
+            Please select or add a new quiz to get started...
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8" *ngIf="selectedQuiz != undefined">
+      <button class="btn btn-outline-dark mb-3">
         Save Quizze<b>s</b>
       </button>
-      <button
-        class="btn btn-link mb-3"
-      >
+      <button class="btn btn-link mb-3">
         Cancel
       </button>
       <div class="card mb-3">
@@ -42,21 +40,21 @@
         </div>
       </div>
       <div class="card mb-3">
-          <div class="card-header">
-            Questions
-          </div>
-          <div class="card-body">
-            Coming soon!
-          </div>
+        <div class="card-header">
+          Questions
+        </div>
+        <div class="card-body">
+          Coming soon!
+        </div>
       </div>
       <div class="card mb-3">
-      <div class="card-header">
-        Other
+        <div class="card-header">
+          Other
+        </div>
+        <div class="card-body">
+          Coming soon!
+        </div>
       </div>
-      <div class="card-body">
-        Coming soon!
-      </div>
-    </div>
     </div>
   </div>
 </div>
