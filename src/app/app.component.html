@@ -8,13 +8,16 @@
         Add New Quiz
       </button>
       <div class="list-group mb-3">
-        <div class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let q of quizzes"
-          (click)="selectQuiz(q)" [class.active]="q == selectedQuiz">
+        <button 
+          class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" 
+          *ngFor="let q of quizzes"
+          (click)="selectQuiz(q)" 
+          [class.active]="q == selectedQuiz">
           {{ q.name }}
           <small class="font-italic font-weight-lighter">
             {{ q.numberOfQuestions }} questions
           </small>
-        </div>
+        </button>
       </div>
     </div>
     <div class="col-md-8" *ngIf="selectedQuiz == undefined">
