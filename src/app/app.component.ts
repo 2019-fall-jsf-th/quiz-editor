@@ -14,7 +14,14 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.myBackgroundColorProperty = Math.random() > 0.5 ? 'yellow' : 'green';
-    this.quizzes = this.qSvc.loadQuizzes();
+    this.qSvc
+      .loadQuizzes()
+      .subscribe(
+        data => this.quizzes = (<any> data).map(x => ({
+          name: x.name
+          , numberOfQuestions: x.numberQuestions
+        }))
+      );
   }
 
   get titleTooltip() {
