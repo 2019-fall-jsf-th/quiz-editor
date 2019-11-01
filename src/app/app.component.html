@@ -5,6 +5,14 @@
       <button class="btn btn-outline-success mb-3">
         Add New Quiz
       </button>
+      <div class="list-group">
+        <div 
+          class="list-group-item"
+          *ngFor="let q of quizzes">
+        {{q}}
+        </div>
+      </div>
+      
       <div class="card">
         <div class="card-header">
           Quizzes

@@ -6,4 +6,13 @@ import { Injectable } from '@angular/core';
 export class QuizService {
 
   constructor() { }
+
+  loadQuizzes() {
+    
+    return [
+        'quiz 1',
+        'quiz 2',
+        'quiz 3'
+      ];
+  }
 }

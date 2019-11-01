@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { QuizService } from './quiz.service';
 
 @Component({
   selector: 'app-root',
@@ -13,4 +14,11 @@ export class AppComponent {
   borderRadius = this.random > 0.5? '30px' : '0px';
   toolTipText = `The color is ${this.propName} ${this.random}`;
   someHtmlString = '<h1>Billy</h1>'
+
+  quizzes = [];
+
+  constructor(private qSvc: QuizService){
+    this.quizzes = qSvc.loadQuizzes();
+    console.log(this.quizzes);
+  }
 }
