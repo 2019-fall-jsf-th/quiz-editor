@@ -16,7 +16,23 @@
         </div>
       </div>
     </div>
-    <div class="col-md-8">
+    <div 
+      class="col-md-8"
+      *ngIf="selectedQuiz == undefined"
+    >
+      <div class="card bg-light">
+        <div class="card-body text-center">
+            <h5 class="card-title">No quiz selected</h5>
+            <p class="card-text">Please select or add a new quiz</p>
+        </div>
+        
+      </div>
+
+    </div>
+    <div 
+      class="col-md-8"
+      *ngIf="selectedQuiz != undefined"
+    >
       <button class="btn btn-outline-dark mb-3">
         Save Quizzes
       </button>
@@ -28,7 +44,7 @@
           General
         </div>
         <div class="card-body">
-          Coming soon!
+          {{ selectedQuiz.name }}
         </div>
       </div>
       <div class="card mb-3">
