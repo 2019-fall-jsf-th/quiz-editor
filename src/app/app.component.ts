@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { QuizService } from './quiz.service';
 
 @Component({
   selector: 'app-root',
@@ -14,5 +15,11 @@ export class AppComponent {
 
   bindingTitle = `The color is ${this.propName}`;
 
-  someHtmlString = 'Joe Sweeney'
+  someHtmlString = 'Joe Sweeney';
+
+  quizzes = [];
+  constructor(private qSvc: QuizService) {
+    this.quizzes = qSvc.loadQuizzes();
+    console.log(this.quizzes);
+  }
 }

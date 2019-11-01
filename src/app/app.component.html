@@ -8,14 +8,12 @@
         Add New Quiz
       </button>
 
-      <!-- CARD -->
-      <div class="card mb-3">
-        <div class="card-header">
-          Quizzes
-        </div>
-
-        <div class="card-body">
-          Coming Soon
+      <div class="list-group mb-3">
+        <div 
+          class="list-group-item"
+          *ngFor="let q of quizzes"
+        >
+          {{ q }}
         </div>
       </div>
 
