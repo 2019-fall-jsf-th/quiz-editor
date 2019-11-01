@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'quiz-editor';
+
+  // propName = 'Purple';
+  private random = Math.random();
+  propName = this.random > 0.5 ? 'Green' : 'Yellow';
+  borderRadius = this.random > 0.5 ? '30px' : '0px';
+
+  toolTipText = `The color is ${this.propName} ${this.random}`;
+
+  someHtmlString = '<h1>Linda</h1>';
 }
