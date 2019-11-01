@@ -15,5 +15,5 @@ export class AppComponent {
 
   toolTipText = `The color is ${this.propName} ${this.random}`;
 
-  someHtmlString = '<h1>Linda</h1>';
+  someHtmlString = '<h1>Linda Xiong</h1>';
 }
