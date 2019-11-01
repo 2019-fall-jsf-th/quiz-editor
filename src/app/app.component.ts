@@ -11,4 +11,8 @@ export class AppComponent {
   // propName = 'Purple';
   propName = Math.random() > 0.5 ? 'Green' : 'Yellow';
   borderRadius = Math.random() > 0.5 ? '30px' : '0px';
+
+  bindingTitle = `The color is ${this.propName}`;
+
+  someHtmlString = 'Joe Sweeney'
 }
