@@ -5,11 +5,15 @@
       <button class="btn btn-outline-success mb-3">
         Add New Quiz
       </button>
-      <div class="list-group">
+      <div class="list-group mb-3">
         <div 
-          class="list-group-item"
-          *ngFor="let q of quizzes">
-        {{q}}
+          class="list-group-item d-flex justify-content-between align-items-center"
+          *ngFor="let q of quizzes"
+          (click)="selectQuiz(q)"
+          [class.active]="q == selectedQuiz"
+          >
+        {{ q.name }}
+        <small class="text-lighter">{{ q.questionCount }} Question(s)</small>
         </div>
       </div>
       
@@ -29,15 +33,17 @@
       <button class="btn btn-link mb-3">
         Cancel
       </button>
-      <div class="card">
+
+      <div class="card mb-3">
         <div class="card-header">
           General
         </div>
         <div class="card-body">
           Coming Soon
         </div>
+      </div>
 
-      <div class="card">
+      <div class="card mb-3">
         <div class="card-header">
           General
         </div>
