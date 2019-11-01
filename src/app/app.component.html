@@ -4,12 +4,12 @@
       <button class="btn btn-outline-success mb-3">
         Add New Quiz
       </button>
-      <div class="card mb-3">
-        <div class="card-header">
-          Quizzes
-        </div>
-        <div class="card-body">
-          Coming soon!
+      <div class="list-group">
+        <div 
+        class="list-group-item mb-3"
+        *ngFor="let q of quizzes"
+        >
+          {{ q }}
         </div>
       </div>
     </div>
