@@ -22,4 +22,11 @@ export class AppComponent {
     this.quizzes = qSvc.loadQuizzes();
     console.log(this.quizzes);
   }
+
+  selectedQuiz = undefined;
+
+  selectQuiz (q) {
+    this.selectedQuiz = q;
+    console.log(this.selectedQuiz);
+  }
 }
