@@ -2,6 +2,7 @@
 
   <div class="row">
 
+    <!-- COLUMN -->
     <div class="col-md-4">
 
       <button class="btn btn-outline-success mb-3">
@@ -9,13 +10,8 @@
       </button>
 
       <div class="list-group mb-3">
-        <div 
-          style="cursor: pointer"
-          class="list-group-item d-flex justify-content-between align-items-center"
-          *ngFor="let q of quizzes"
-          (click)="selectQuiz(q)"
-          [class.active]="q == selectedQuiz"
-        >
+        <div style="cursor: pointer" class="list-group-item d-flex justify-content-between align-items-center"
+          *ngFor="let q of quizzes" (click)="selectQuiz(q)" [class.active]="q == selectedQuiz">
           {{ q.name }}
           <small>
             {{ q.questionCount }} question(s)
@@ -25,7 +21,25 @@
 
     </div>
 
-    <div class="col-md-8">
+    <!-- COLUMN -->
+    <div class="col-md-8" *ngIf="selectedQuiz == undefined">
+
+      <!-- CARD -->
+      <div class="card bg-light text-center">
+        <div class="card-body">
+          <h5 class="card-title">
+            No Quiz Selected
+          </h5>
+          <p class="card-text">
+            Please Select or Add a New Quiz...
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- COLUMN -->
+    <div class="col-md-8" *ngIf="selectedQuiz != undefined">
 
       <button class="btn btn-outline-dark mb-3">
         Save Quizzes
@@ -42,7 +56,7 @@
         </div>
 
         <div class="card-body">
-          Coming Soon
+          {{ selectedQuiz.name }}
         </div>
       </div>
 
