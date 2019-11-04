@@ -17,11 +17,13 @@ export class AppComponent implements OnInit {
     this.qSvc
       .loadQuizzes()
       .subscribe(
-        data => this.quizzes = (<any> data).map(x => ({
+        data => {
+          console.log(data);
+          this.quizzes = (<any> data).map(x => ({
           name: x.name
           , numberOfQuestions: x.numberQuestions
-        }))
-      );
+        }));
+      });
   }
 
   get titleTooltip() {
