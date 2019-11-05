@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { QuizService, QuizDisplay } from './quiz.service';
+import { ConsoleReporter } from 'jasmine';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,10 @@ export class AppComponent implements OnInit {
           , numberOfQuestions: x.numberQuestions
         }));
       });
+  }
+
+  ngOnDestroy() {
+    console.log('here');
   }
 
   get titleTooltip() {
