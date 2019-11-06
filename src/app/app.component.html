@@ -5,15 +5,21 @@
         Add New Quiz
       </button>
       <div class="list-group mb-3">
-        <div 
+        <button 
           class="list-group-item d-flex justify-content-between align-items-center"
           *ngFor="let q of quizzes"
           (click)="selectQuiz(q)"
           [class.active]="q == selectedQuiz"
         >
           {{ q.name }}
-          <small>{{ q.questionCount }} question(s)</small>
-        </div>
+          <small
+            class="font-italic font-weight-lighter"
+            [class.text-danger]="q.questionCount == 0 && q != selectedQuiz"
+            [class.text-white]="q == selectedQuiz"
+          >
+            {{ q.questionCount }} questions
+          </small>
+        </button>
       </div>
     </div>
     <div 
@@ -52,6 +58,12 @@
       <div class="card mb-3">
         <div class="card-header">
           Questions
+          <span
+            class="text-danger"
+            *ngIf="selectedQuiz.questionCount == 0"
+          >
+            (No questions)
+          </span>
         </div>
         <div class="card-body">
           Coming soon!
