@@ -1,5 +1,18 @@
 <div class="container" style="margin: 20px;">
-  <div class="row">
+  <div 
+    class="row"
+    *ngIf="errorLoadingQuizzes"
+  >
+    <div class="col-md-12">
+      <h3>
+        Error loading quizzes, please try again later...
+      </h3>
+    </div>
+  </div>
+  <div 
+    class="row"
+    *ngIf="!errorLoadingQuizzes"
+  >
     <div class="col-md-4">
       <button class="btn btn-outline-success mb-3">
         Add New Quiz

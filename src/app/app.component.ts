@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { QuizService, QuizDisplay } from './quiz.service';
-import { ConsoleReporter } from 'jasmine';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +11,7 @@ export class AppComponent implements OnInit {
 
   myBackgroundColorProperty = "purple";
   quizzes: QuizDisplay[] = [];
+  errorLoadingQuizzes = false;
 
   ngOnInit() {
     this.myBackgroundColorProperty = Math.random() > 0.5 ? 'yellow' : 'green';
@@ -19,12 +19,14 @@ export class AppComponent implements OnInit {
       .loadQuizzes()
       .subscribe(
         data => {
-          console.log(data);
-          this.quizzes = (<any> data).map(x => ({
-          name: x.name
-          , numberOfQuestions: x.numberQuestions
-        }));
-      });
+            console.log(data);
+            this.quizzes = (<any> data).map(x => ({
+              name: x.name
+              , numberOfQuestions: x.numberQuestions
+            }));
+        }
+        , error => this.errorLoadingQuizzes = true
+      );
   }
 
   ngOnDestroy() {
