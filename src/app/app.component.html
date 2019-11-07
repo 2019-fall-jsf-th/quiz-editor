@@ -48,7 +48,12 @@
           General
         </div>
         <div class="card-body">
-          {{ selectedQuiz.name }}
+          <label>Name</label>
+          <input
+            class="form-control"
+            type="text"
+            [(ngModel)]="selectedQuiz.name"
+          >
         </div>
       </div>
       <div class="card mb-3">
@@ -59,15 +64,15 @@
           Coming soon!
         </div>
       </div>
-        <div class="card">
-          <div class="card-header">
-            Other
-          </div>
-          <div class="card-body">
-            Coming soon!
-          </div>
+      <div class="card">
+        <div class="card-header">
+          Other
+        </div>
+        <div class="card-body">
+          Coming soon!
         </div>
       </div>
+    </div>
   </div>
 </div>
 
