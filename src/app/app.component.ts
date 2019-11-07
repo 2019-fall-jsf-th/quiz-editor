@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { QuizService } from './quiz.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
