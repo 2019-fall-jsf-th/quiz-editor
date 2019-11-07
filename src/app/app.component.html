@@ -1,5 +1,6 @@
 <div class="container" style="margin: 20px;">
   <div class="row">
+
     <div class="col-md-4">
       <button class="btn btn-outline-success mb-3">
         Add New Quiz
@@ -16,6 +17,7 @@
         </div>
       </div>
     </div>
+
     <div 
       class="col-md-8"
       *ngIf="selectedQuiz == undefined"
@@ -31,6 +33,7 @@
         </div>
       </div>
     </div>
+
     <div 
       class="col-md-8"
       *ngIf="selectedQuiz != undefined"
@@ -38,17 +41,20 @@
       <button class="btn btn-outline-dark mb-3">
         Save Quizzes
       </button>
+
       <button class="btn btn-link mb-3">
         Cancel
       </button>
+
       <div class="card mb-3">
         <div class="card-header">
           General
         </div>
         <div class="card-body">
-          {{ selectedQuiz.name }}
+          <input type="text" [(ngModel)]="selectedQuiz.name">
         </div>
       </div>
+
       <div class="card mb-3">
         <div class="card-header">
           Questions
@@ -57,6 +63,7 @@
           Coming soon!
         </div>
       </div>
+
         <div class="card">
           <div class="card-header">
             Other
@@ -65,7 +72,9 @@
             Coming soon!
           </div>
         </div>
+
       </div>
+
   </div>
 </div>
 
