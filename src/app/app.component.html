@@ -1,18 +1,13 @@
 <div class="container" style="margin: 20px;">
-  <div 
-    class="row"
-    *ngIf="errorLoadingQuizzes"
-  >
+  <div class="row" *ngIf="errorLoadingQuizzes">
     <div class="col-md-12">
-      <h3>
+      <div class="alert alert-danger text-center" role="alert">
+        <h4 class="alert-heading">: - (</h4>
         Error loading quizzes, please try again later...
-      </h3>
+      </div>
     </div>
   </div>
-  <div 
-    class="row"
-    *ngIf="!errorLoadingQuizzes"
-  >
+  <div class="row" *ngIf="!errorLoadingQuizzes">
     <div class="col-md-4">
       <button class="btn btn-outline-success mb-3">
         Add New Quiz
@@ -21,11 +16,8 @@
         <div class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let q of quizzes"
           (click)="selectQuiz(q)" [class.active]="q == selectedQuiz">
           {{ q.name }}
-          <small 
-            class="font-italic font-weight-lighter p-1" 
-            [class.text-danger]="q.numberOfQuestions == 0"
-            [class.bg-light1]="q.numberOfQuestions == 0"
-          >
+          <small class="font-italic font-weight-lighter p-1" [class.text-danger]="q.numberOfQuestions == 0"
+            [class.bg-light1]="q.numberOfQuestions == 0">
             {{ q.numberOfQuestions }} questions
           </small>
         </div>
