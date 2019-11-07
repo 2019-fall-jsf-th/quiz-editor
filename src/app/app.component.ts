@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { QuizService } from './quiz.service';
+import { element } from 'protractor';
+import { isNgTemplate } from '@angular/compiler';
 
 @Component({
   selector: 'app-root',
@@ -33,10 +35,16 @@ export class AppComponent {
   }
 
   changeQuizName(changedQuizName: String) {
-    console.log(changedQuizName);
-    let updatedQuiz = changedQuizName;
-    // console.log(updatedQuiz);
-    // console.log(this.selectedQuiz.name);
+    let quizzesList = [...this.quizzes];
+    // console.log(quizzesList);
+    
+   quizzesList.forEach(quiz => {
+      if (quiz.name == this.selectedQuiz.name) {
+        quiz.name = changedQuizName;
+      }
+   });
+    // console.log(quizzesList);
+    
   }
 
 
