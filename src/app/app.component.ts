@@ -47,5 +47,10 @@ export class AppComponent {
     
   }
 
+  addQuiz() {
+    let newQuiz = {name: "Untitled Quiz", questionCount: 0};
+    this.quizzes.push(newQuiz);
+  }
+
 
 }
