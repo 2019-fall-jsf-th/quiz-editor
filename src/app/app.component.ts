@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { QuizService } from './quiz.service';
-import { element } from 'protractor';
-import { isNgTemplate } from '@angular/compiler';
 
 @Component({
   selector: 'app-root',
@@ -31,7 +29,7 @@ export class AppComponent {
 
   selectQuiz(q) {
     this.selectedQuiz = q;
-    console.log(this.selectedQuiz.name);
+    //console.log(this.selectedQuiz.name);
   }
 
   changeQuizName(changedQuizName: String) {
