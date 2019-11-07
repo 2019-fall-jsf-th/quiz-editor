@@ -35,7 +35,7 @@
       class="col-md-8"
       *ngIf="selectedQuiz != undefined"
     >
-      <button class="btn btn-outline-dark mb-3">
+      <button class="btn btn-outline-dark mb-3" (click)="changeQuizName(changedQuizName.value)">
         Save Quizzes
       </button>
       <button class="btn btn-link mb-3">
@@ -46,7 +46,8 @@
           General
         </div>
         <div class="card-body">
-          {{ selectedQuiz.name }}
+          <!-- {{ selectedQuiz.name }} -->
+          <input type="text" value={{selectedQuiz.name}} #changedQuizName />
         </div>
       </div>
       <div class="card mb-3">

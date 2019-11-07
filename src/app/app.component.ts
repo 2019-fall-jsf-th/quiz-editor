@@ -31,4 +31,13 @@ export class AppComponent {
     this.selectedQuiz = q;
     console.log(this.selectedQuiz.name);
   }
+
+  changeQuizName(changedQuizName: String) {
+    console.log(changedQuizName);
+    let updatedQuiz = changedQuizName;
+    // console.log(updatedQuiz);
+    // console.log(this.selectedQuiz.name);
+  }
+
+
 }
