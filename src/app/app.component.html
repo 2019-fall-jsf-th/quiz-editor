@@ -2,7 +2,9 @@
 <div class="container" style="margin: 20px;">
   <div class="row">
     <div class="col-md-4 mb-3">
-      <button class="btn btn-outline-success mb-3">
+      <button 
+        class="btn btn-outline-success mb-3"
+        >
         Add New Quiz
       </button>
       <div class="list-group mb-3">
@@ -14,15 +16,6 @@
           >
         {{ q.name }}
         <small class="text-lighter">{{ q.questionCount }} Question(s)</small>
-        </div>
-      </div>
-      
-      <div class="card">
-        <div class="card-header">
-          Quizzes
-        </div>
-        <div class="card-body">
-          Coming Soon
         </div>
       </div>
     </div>
@@ -57,13 +50,18 @@
           General
         </div>
         <div class="card-body">
+          <span class="input-group-addon">Name</span>
+          <input 
+            type="text" 
+            class="form-control col-md-7"
+            >
           {{selectedQuiz.name}}
         </div>
       </div>
 
       <div class="card mb-3">
         <div class="card-header">
-          General
+          Questions
         </div>
         <div class="card-body">
           Coming Soon
@@ -72,7 +70,7 @@
 
       <div class="card">
           <div class="card-header">
-              General
+              Other
           </div>
           <div class="card-body">
              Coming Soon
