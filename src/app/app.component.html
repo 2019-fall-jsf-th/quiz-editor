@@ -15,11 +15,11 @@
           {{ q.name }}
           <small
             class="font-italic font-weight-lighter"
-            [class.text-danger]="q.questionCount == 0 && q != selectedQuiz"
+            [class.text-danger]="q.temporaryQuestionCount == 0 && q != selectedQuiz"
             
           >
-          {{ q.questionCount }} questions</small>
-      </button>
+          {{ q.temporaryQuestionCount }} questions</small>
+        </button>
       </div>
     </div>
     <div 
@@ -59,7 +59,7 @@
         <div class="card-header">
           Questions
           <span
-            *ngIf="selectedQuiz.questionCount == 0"
+            *ngIf="selectedQuiz.temporaryQuestionCount == 0"
             class="text-danger"
           >(No Questions)</span>
         </div>
