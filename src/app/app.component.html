@@ -1,16 +1,16 @@
 <div class="container" style="margin: 20px;">
   <div
-  class="row"
-  *ngIf="failedToLoadQuizzes"
+    class="row"
+    *ngIf="failedToLoadQuizzes"
   >
-    <h3>Failed to Load Quizzes, please refresh page to try again.</h3>
+    <h3>Failed to load quizzes, please refresh page to try again...</h3>
   </div>
-  <div 
+  <div
     class="row"
     *ngIf="!failedToLoadQuizzes"
   >
     <div class="col-md-4">
-      <button 
+      <button
         class="btn btn-outline-success mb-3"
         (click)="addNewQuiz()"
       >

@@ -27,18 +27,29 @@ export class AppComponent implements OnInit {
 
   constructor(private qSvc: QuizService) {}
 
+  failedToLoadQuizzes = false;
+
   ngOnInit() {
-    this.quizzes = this.qSvc.loadQuizzes()
-    .subscribe(
-      date => 
-      console.log(data);
-      console.log('Working');
-      this.quizzes = (<any[]> date).map(x => ([
-        name: x.name
-        , temporaryQuestionsCount: x.questions.lenth
-      ]));
-    }
-    )
+
+    //this.quizzes = [];
+
+    this.qSvc
+      .loadQuizzes()
+      .subscribe(
+        data => {
+          console.log(data);
+          console.log('woo hoo');
+          this.quizzes = (<any[]> data).map(x => ({
+            name: x.name
+            , temporaryQuestionCount: x.questions.length
+          }));
+        }
+        , error => {
+          console.error(error.error);
+          this.failedToLoadQuizzes = true;
+        }
+      )
+
     console.log(this.quizzes);
   }
 
@@ -53,7 +64,7 @@ export class AppComponent implements OnInit {
 
     const newQuiz = {
        name: 'Untitled Quiz'
-       , temporaryQuestionCount: 0 
+       , temporaryQuestionCount: 0
     };
 
     this.quizzes = [

@@ -6,11 +6,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class QuizService {
 
-  constructor(private httpSvc: HttpClient) { }
+  constructor(private builtInAngularHttpClient: HttpClient) { }
 
   loadQuizzes() {
 
-    return this.builtInAngularHttpClient.get('https://modern-js.azurewebsites.net/api/HttpTriggerJS1?code=8XD3vN3ehHLdZacBQJQhgUnNst9202gdd5VM3kWCytDkz2nXhia6kA==&name=Corin%20Heilman';)
+    return this.builtInAngularHttpClient.get('https://modern-js.azurewebsites.net/api/HttpTriggerJS1?code=8XD3vN3ehHLdZacBQJQhgUnNst9202gdd5VM3kWCytDkz2nXhia6kA==&name=Corin%20Heilman');
 
     // return [
     //   { name: "Quiz 1", questionCount: 10 }
