@@ -25,20 +25,32 @@ export class AppComponent implements OnInit {
 
   quizzes: QuizDisplay[] = [];
 
-  constructor(private qSvc: QuizService) {
-    this.quizzes = this.qSvc.loadQuizzes();
-    console.log(this.quizzes);
-  }
+  constructor(private qSvc: QuizService) {}
 
   selectedQuiz = undefined;
 
+  failedToLoadQuizzes = false;
   ngOnInit() {
-    this.quizzes = this.qSvc.
-    loadQuizzes()
-    .map(x => ({ 
-      name: x.name
-      , questionCount: x.questionCount
-    }));
+    //this.quizzes = []; 
+    
+    this.qSvc
+      .loadQuizzes()
+      .subscribe(
+        data => {
+          
+          console.log(data);
+          console.log('Woo Hoo');
+          this.quizzes = (<any[]>data).map(x => ({
+            name: x.name
+            , questionCount: x.questions.length
+          }));
+        }
+        , error => {
+          console.error(error.error);
+          this.failedToLoadQuizzes = true;
+        }
+      );
+   
     console.log(this.quizzes);
   }
   
