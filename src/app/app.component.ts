@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { QuizService } from './quiz.service';
 
 @Component({
@@ -6,9 +6,9 @@ import { QuizService } from './quiz.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'quiz-editor';
-
+/*
   //propName = 'Purple';
   private random = Math.random();
   propName = this.random > 0.5 ? 'Green' : 'Yellow';
@@ -17,13 +17,16 @@ export class AppComponent {
   toolTipText = `The color is ${this.propName} ${this.random}`;
 
   someHtmlString = '<h1>Tom Steele</h1>';
-
+*/
   quizzes = [];
 
-  constructor(private qSvc: QuizService) {
+  constructor(private qSvc: QuizService) {}
+
+  ngOnInit() {
     this.quizzes = this.qSvc.loadQuizzes();
     console.log(this.quizzes);
   }
+
 
   selectedQuiz = undefined;
 
