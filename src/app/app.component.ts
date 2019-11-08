@@ -36,8 +36,8 @@ export class AppComponent {
     
     const newQuiz = {name: 'Untitled Quiz', questionCount: 0};
     this.quizzes = [
-      ...this.quizzes,
-      newQuiz
+      ...this.quizzes
+      , newQuiz
     ];
 
     this.selectQuiz(newQuiz);
