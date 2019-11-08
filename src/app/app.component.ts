@@ -34,13 +34,18 @@ export class AppComponent {
 
   addNewQuiz() {
     let newQuiz = {'name': '', 'questionCount': 0};
-    this.selectedQuiz = newQuiz;
-    this.quizzes.push(newQuiz);
+
+    this.quizzes = [
+      ...this.quizzes
+      , newQuiz
+    ];
+
+    this.selectQuiz(newQuiz);
     console.table('addNewQuiz', this.selectedQuiz);
   }
 
-  updateQuiz(name='', questionCount=0) {
-    this.selectedQuiz.name = name;
-    this.selectedQuiz.questionCount = questionCount;
-  }
+  // updateQuiz(name='', questionCount=0) {
+  //   this.selectedQuiz.name = name;
+  //   this.selectedQuiz.questionCount = questionCount;
+  // }
 }
