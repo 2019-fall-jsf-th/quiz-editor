@@ -3,24 +3,30 @@
     <div class="col-md-4">
       <button 
         class="btn btn-outline-success mb-3"
-        (click) ="addNewQuiz()"
+        (click)="addNewQuiz()"
       >
         Add New Quiz
       </button>
       <div></div>
       <div class="list-group mb-3">
-        <button 
+        <button
           class="list-group-item d-flex justify-content-between align-items-center"
           *ngFor="let q of quizzes"
           (click)="selectQuiz(q)"
           [class.active]="q == selectedQuiz"
         >
           {{ q.name }}
-          <small>{{ q.temporaryQuestionCount }} question(s)</small>
-      </button>
+          <small
+            class="font-italic font-weight-lighter"
+            [class.text-danger]="q.temporaryQuestionCount == 0 && q != selectedQuiz"
+            [class.text-white]="q == selectedQuiz"
+          >
+            {{ q.temporaryQuestionCount }} questions
+          </small>
+        </button>
       </div>
     </div>
-    <div 
+    <div
       class="col-md-8"
       *ngIf="selectedQuiz == undefined"
     >
@@ -35,7 +41,7 @@
         </div>
       </div>
     </div>
-    <div 
+    <div
       class="col-md-8"
       *ngIf="selectedQuiz != undefined"
     >
@@ -50,20 +56,22 @@
           General
         </div>
         <div class="card-body">
-            <input 
-              type="text" 
-              [(ngModel)]="selectedQuiz.name"
-            >
+          <input
+            class="form-control"
+            type="text"
+            [(ngModel)]="selectedQuiz.name"
+          >
         </div>
       </div>
       <div class="card mb-3">
         <div class="card-header">
           Questions
-          
           <span
-            *ngIf="selectedQuiz.temporaryQuestionCount ==0"
+            *ngIf="selectedQuiz.temporaryQuestionCount == 0"
             class="text-danger"
-          >(No Questions)</span>
+          >
+            (No Questions)
+          </span>
         </div>
         <div class="card-body">
           Coming soon!
@@ -80,9 +88,3 @@
       </div>
   </div>
 </div>
-
-
-
-
-
-
