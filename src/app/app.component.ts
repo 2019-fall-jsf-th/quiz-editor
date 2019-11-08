@@ -3,7 +3,8 @@ import { QuizService } from './quiz.service';
 
 interface QuizDisplay {
   name: string;
-  tempQuestionCount: number;
+  questionCount: number;
+  questions: string[];
 }
 
 
@@ -28,13 +29,31 @@ export class AppComponent implements OnInit {
 
   constructor(private qSvc: QuizService) {}
 
+  failedToLoadQuizzes = false;
+
   ngOnInit() {
-    this.quizzes = this.qSvc
+    this.quizzes = [];
+    this.qSvc
       .loadQuizzes()
-      .map(x => ({
-        name: x.name
-        , tempQuestionCount: x.questionCount
-      }));
+      .subscribe(
+        data => {
+          console.log(data)
+          this.quizzes = (<QuizDisplay[]> data).map(
+              x => ({
+                name: x.name
+                , questionCount: x.questions.length
+                , questions: x.questions
+              })
+          );
+        }
+        , error => {
+          console.error(error.error);
+          this.failedToLoadQuizzes = true;
+        })
+      // .map(x => ({
+      //   name: x.name
+      //   , tempQuestionCount: x.questionCount
+      // }));
     console.log(this.quizzes);
   }
 
@@ -47,7 +66,7 @@ export class AppComponent implements OnInit {
   }
 
   addNewQuiz() {
-    let newQuiz = {'name': 'Untitled', 'tempQuestionCount': 0};
+    let newQuiz = {'name': 'Untitled', 'questionCount': 0, 'questions':[]};
 
     this.quizzes = [
       ...this.quizzes
