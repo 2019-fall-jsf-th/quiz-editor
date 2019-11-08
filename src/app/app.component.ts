@@ -75,4 +75,8 @@ export class AppComponent implements OnInit {
       , newQuiz
     ];
   }
+
+  addNewQuestion() {
+    
+  }
 }
