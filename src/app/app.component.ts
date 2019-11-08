@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
         data => {
           console.log(data);
           console.log('woo hoo');
-          this.quizzes = (<any[]> data).map(x => ({
+          this.quizzes = data.map(x => ({
             name: x.name
             , temporaryQuestionCount: x.questions.length
           }));

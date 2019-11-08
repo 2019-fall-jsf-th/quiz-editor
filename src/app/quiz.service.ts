@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+interface AzureWebServiceDataShape {
+  name: string;
+  numberQuestions: number;
+  questions: {name: string}[];
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +16,7 @@ export class QuizService {
 
   loadQuizzes() {
 
-    return this.builtInAngularHttpClient.get('https://modern-js.azurewebsites.net/api/HttpTriggerJS1?code=8XD3vN3ehHLdZacBQJQhgUnNst9202gdd5VM3kWCytDkz2nXhia6kA==&name=Tom%20Steele');
+    return this.builtInAngularHttpClient.get<AzureWebServiceDataShape[]>('https://modern-js.azurewebsites.net/api/HttpTriggerJS1?code=8XD3vN3ehHLdZacBQJQhgUnNst9202gdd5VM3kWCytDkz2nXhia6kA==&name=Tom%20Steele');
 
     // return [
     //   { name: "Quiz 1", questionCount: 10 }
