@@ -16,7 +16,7 @@
           [class.active]="q == selectedQuiz"
         >
           {{ q.name }}
-          <small>{{ q.questionCount }} question(s)</small>
+          <small>{{ q.temporaryQuestionCount }} question(s)</small>
       </button>
       </div>
     </div>
@@ -61,7 +61,7 @@
           Questions
           
           <span
-            *ngIf="selectedQuiz.questionCount ==0"
+            *ngIf="selectedQuiz.temporaryQuestionCount ==0"
             class="text-danger"
           >(No Questions)</span>
         </div>
