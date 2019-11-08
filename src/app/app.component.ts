@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { QuizService } from './quiz.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { QuizService } from './quiz.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'quiz-editor';
 
   //propName = 'Purple';
@@ -20,7 +20,9 @@ export class AppComponent {
 
   quizzes = [];
 
-  constructor(private qSvc: QuizService) {
+  constructor(private qSvc: QuizService) {}
+
+  ngOnInit() {
     this.quizzes = this.qSvc.loadQuizzes();
     console.log(this.quizzes);
   }
