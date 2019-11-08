@@ -1,13 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { QuizService } from './quiz.service';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'quiz-editor';
 
   private random = Math.random();
@@ -18,9 +17,11 @@ export class AppComponent {
 
   quizzes = [];
 
-  constructor(private qSvc: QuizService){
-    this.quizzes = qSvc.loadQuizzes();
-    console.log(this.quizzes);
+  constructor(private qSvc: QuizService){}
+
+  ngOnInit() {
+    this.quizzes = this.qSvc.loadQuizzes();
+    console.log(this.quizzes);    
   }
 
   selectedQuiz = undefined;
