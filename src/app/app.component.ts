@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizService } from './quiz.service';
 
+interface QuizDisplay {
+  name: string;
+  tempQuestionCount: number;
+}
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,12 +24,17 @@ export class AppComponent implements OnInit {
 
   someHtmlString = '<h1>Tom Steele</h1>';
 */
-  quizzes = [];
+  quizzes: QuizDisplay[] = [];
 
   constructor(private qSvc: QuizService) {}
 
   ngOnInit() {
-    this.quizzes = this.qSvc.loadQuizzes();
+    this.quizzes = this.qSvc
+      .loadQuizzes()
+      .map(x => ({
+        name: x.name
+        , tempQuestionCount: x.questionCount
+      }));
     console.log(this.quizzes);
   }
 
@@ -36,7 +47,7 @@ export class AppComponent implements OnInit {
   }
 
   addNewQuiz() {
-    let newQuiz = {'name': '', 'questionCount': 0};
+    let newQuiz = {'name': 'Untitled', 'tempQuestionCount': 0};
 
     this.quizzes = [
       ...this.quizzes
