@@ -9,7 +9,7 @@
       </button>
       <div></div>
       <div class="list-group mb-3">
-        <div 
+        <button 
           class="list-group-item d-flex justify-content-between align-items-center"
           *ngFor="let q of quizzes"
           (click)="selectQuiz(q)"
@@ -17,7 +17,7 @@
         >
           {{ q.name }}
           <small>{{ q.questionCount }} question(s)</small>
-        </div>
+      </button>
       </div>
     </div>
     <div 
