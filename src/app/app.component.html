@@ -6,7 +6,7 @@
         Add New Quiz
       </button>
       <div class="list-group mb-3">
-        <div 
+        <button 
           class="list-group-item d-flex justify-content-between align-items-center"
           *ngFor="let q of quizzes"
           (click)="selectQuiz(q)"
@@ -18,7 +18,7 @@
             [class.text-danger]="q.questionCount == 0 && q != selectedQuiz"
             [class.text-white]="q == selectedQuiz"
           >{{ q.questionCount }} questions</small>
-        </div>
+      </button>
       </div>
     </div>
 
