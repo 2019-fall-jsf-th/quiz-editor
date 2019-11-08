@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   someHtmlString = '<h1>Tom Good</h1>';
 
   quizzes = [];
+
   constructor(private qSvc: QuizService) {}
 
   ngOnInit() {

@@ -15,7 +15,13 @@
           [class.active]="q == selectedQuiz"
         >
           {{ q.name }}
-          <small class="text-lighter">{{ q.questionCount }} question(s)</small>
+          <small
+            class="font-weight-lighter font-italiic"
+            [class.text-danger]="q.questionCount == 0 && q != selectedQuiz"
+            [class.text-white]="q == selectedQuiz"
+          >
+            {{ q.questionCount }} question
+          </small>
         </div>
       </div>
     </div>
@@ -60,6 +66,12 @@
       <div class="card mb-3">
         <div class="card-header">
           Questions
+          <span
+            *ngIf="selectedQuiz.questionCount == 0"
+            class="text-danger"
+          >
+            (No Questions)
+          </span>
         </div>
         <div class="card-body">
           Coming Soon!
