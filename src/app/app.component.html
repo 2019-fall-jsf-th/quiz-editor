@@ -1,4 +1,3 @@
-
 <div class="container" style="margin: 20px;">
   <div class="row">
     <div class="col-md-4 mb-3">
@@ -16,7 +15,11 @@
           [class.active]="q == selectedQuiz"
           >
         {{ q.name }}
-        <small class="text-lighter">{{ q.questionCount }} Question(s)</small>
+        <small 
+          class="font-italic font-weight-lighter"
+          [class.text-danger]="q.questionCount == 0 && q != selectedQuiz"
+          [class.text-white]="q == selectedQuiz"
+        >{{ q.questionCount }} Questions</small>
         </div>
       </div>
     </div>
@@ -63,6 +66,12 @@
       <div class="card mb-3">
         <div class="card-header">
           Questions
+          <span
+            *ngIf="selectedQuiz.questionCount == 0"
+            class="text-danger"
+          >
+            (no questions)
+          </span>
         </div>
         <div class="card-body">
           Coming Soon
