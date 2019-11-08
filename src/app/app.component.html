@@ -66,14 +66,20 @@
       </div>
       <div class="card mb-3">
         <div class="card-header">
-          Questions
+          <button class="btn btn-outline-dark mb-3">Add Question</button>
           <span
             *ngIf="selectedQuiz.temporaryQuestionCount == 0"
             class="text-danger"
-          >(No Questions)</span>
+          >&nbsp;(No Questions)</span>
         </div>
         <div class="card-body">
-          Coming soon!
+          <button 
+          class="list-group-item d-flex justify-content-between align-items-center"
+         *ngFor="let questions of quizzes.question"
+          >
+          {{questions.name}}
+          </button>
+        
         </div>
       </div>
         <div class="card">

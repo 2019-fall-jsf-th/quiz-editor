@@ -42,16 +42,17 @@ export class AppComponent implements OnInit {
             name: x.name
             , temporaryQuestionCount: x.questions.length
           }));
+          
         }
         , error => {
           console.error(error.error);
           this.failedToLoadQuizzes = true;
         }
+        
       )
-
-
+      
       ;
-    console.log(this.quizzes);
+      console.log(this.quizzes);
   }
 
   selectedQuiz = undefined;
