@@ -1,4 +1,9 @@
 <div class="container" style="margin: 20px;">
+  <div 
+    class="row"
+    *ngIf="failedToLoadQuizzes">
+    <h3>Failed to load quizzes, please refresh page to try again</h3>
+  </div>
   <div class="row">
     <div class="col-md-4 mb-3">
       <button 
@@ -17,9 +22,9 @@
         {{ q.name }}
           <small 
             class="font-italic font-weight-lighter"
-            [class.text-danger]="q.questionCount == 0 && q != selectedQuiz"
+            [class.text-danger]="q.temporaryQuestionCount == 0 && q != selectedQuiz"
             [class.text-white]="q == selectedQuiz"
-          >{{ q.questionCount }} Questions</small>
+          >{{ q.temporaryQuestionCount }} Questions</small>
         </button>
       </div>
     </div>
