@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
 
   quizzes = [];
 
-  // In TS, constructors are used for dependency injections only
+  // In TS, constructors are used for dependency injections only, parameters can take scope specifiers
   constructor(private qSvc: QuizService) {}
 
   // Refractor to use ngOnInit() rather than using constructor to load our quizzes

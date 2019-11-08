@@ -16,10 +16,19 @@
           [class.active]="q == selectedQuiz"
         >
           {{ q.name }}
-          <small>{{ q.questionCount }} question(s)</small>
+          <!-- make it red if q.questionCount is zero, but make text white if selected
+              where q is our Array property -->
+          <small
+            class="font-italic font-weight-lighter"
+            [class.text-danger]="q.questionCount == 0 && q != selectedQuiz"
+            [class.text-white]="q == selectedQuiz"
+          >
+          {{ q.questionCount }} questions</small>
         </div>
       </div>
     </div>
+    
+    <!-- No selected quiz -->
     <div 
       class="col-md-8"
       *ngIf="selectedQuiz == undefined"
@@ -35,6 +44,8 @@
         </div>
       </div>
     </div>
+    
+    <!-- Quiz selected -->
     <div 
       class="col-md-8"
       *ngIf="selectedQuiz != undefined"
@@ -61,6 +72,12 @@
       <div class="card mb-3">
         <div class="card-header">
           Questions
+          <span
+            *ngIf="selectedQuiz.questionCount == 0"
+            class="text-danger"
+          >
+            (No Questions)
+          </span>
         </div>
         <div class="card-body">
           Coming soon!
