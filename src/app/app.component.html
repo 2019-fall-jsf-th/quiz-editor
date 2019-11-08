@@ -17,14 +17,14 @@
           [class.active]="q == selectedQuiz"
         >
           {{ q.name }}
-          <!-- make it red if q.questionCount is zero, but make text white if selected
+          <!-- make it text red if q.questionCount is zero, and make text white if selected,
               where q is our Array property -->
           <small
             class="font-italic font-weight-lighter"
-            [class.text-danger]="q.questionCount == 0 && q != selectedQuiz"
+            [class.text-danger]="q.temporaryQuestionCount == 0 && q != selectedQuiz"
             [class.text-white]="q == selectedQuiz"
           >
-          {{ q.questionCount }} questions
+            {{ q.temporaryQuestionCount }} questions
           </small>
           </button>
       </div>
@@ -75,7 +75,7 @@
         <div class="card-header">
           Questions
           <span
-            *ngIf="selectedQuiz.questionCount == 0"
+            *ngIf="selectedQuiz.temporaryQuestionCount == 0"
             class="text-danger"
           >
             (No Questions)

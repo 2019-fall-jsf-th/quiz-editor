@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizService } from './quiz.service';
 
+interface QuizDisplay {
+  name: string;
+  temporaryQuestionCount: number;
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,16 +21,22 @@ export class AppComponent implements OnInit {
 
   toolTipText = `The color is ${this.propName} ${this.random}`;
 
-  someHtmlString = '<h1>Tom Steele</h1>';
+  someHtmlString = '<h1>Linda Xiong</h1>';
 
-  quizzes = [];
+  // Set type of array - type annotation instead of type inference
+  quizzes: QuizDisplay[] = [];
 
   // In TS, constructors are used for dependency injections only, parameters can take scope specifiers
   constructor(private qSvc: QuizService) {}
 
   // Refractor to use ngOnInit() rather than using constructor to load our quizzes
   ngOnInit() {
-    this.quizzes = this.qSvc.loadQuizzes();
+    this.quizzes = this.qSvc
+      .loadQuizzes()
+      .map(x=> ({ 
+        name: x.name
+        , temporaryQuestionCount: x.questionCount
+      }));
     console.log(this.quizzes);
   }
 
@@ -38,7 +49,9 @@ export class AppComponent implements OnInit {
 
   
   addNewQuiz() {
-    const newQuiz = { name: 'Untitled Quiz', questionCount: 0};
+    const newQuiz = { 
+      name: 'Untitled Quiz'
+      , temporaryQuestionCount: 0};
 
     this.quizzes = [
       ...this.quizzes
