@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { QuizService } from './quiz.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { QuizService } from './quiz.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'quiz-editor';
 
   //propName = 'Purple';
@@ -20,7 +20,11 @@ export class AppComponent {
 
   quizzes = [];
 
-  constructor(private qSvc: QuizService) {
+  // In TS, constructors are used for dependency injections only
+  constructor(private qSvc: QuizService) {}
+
+  // Refractor to use ngOnInit() rather than using constructor to load our quizzes
+  ngOnInit() {
     this.quizzes = this.qSvc.loadQuizzes();
     console.log(this.quizzes);
   }
@@ -35,7 +39,7 @@ export class AppComponent {
   
   addNewQuiz() {
     const newQuiz = { name: 'Untitled Quiz', questionCount: 0};
-    
+
     this.quizzes = [
       ...this.quizzes
       , newQuiz
