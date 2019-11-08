@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizService } from './quiz.service';
 
+
 interface QuizDisplay {
   name: string;
   temporaryQuestionCount: number;
@@ -29,14 +30,30 @@ export class AppComponent implements OnInit {
   // In TS, constructors are used for dependency injections only, parameters can take scope specifiers
   constructor(private qSvc: QuizService) {}
 
+  failedToLoadQuizzes = false;
+  
   // Refractor to use ngOnInit() rather than using constructor to load our quizzes
   ngOnInit() {
-    this.quizzes = this.qSvc
+    this.quizzes = [];
+
+    this.qSvc
       .loadQuizzes()
-      .map(x=> ({ 
-        name: x.name
-        , temporaryQuestionCount: x.questionCount
-      }));
+      // make a call to a webservice
+      .subscribe( 
+        data => {
+          console.log(data);
+          console.log('woohoo');
+          this.quizzes = (<any[]> data).map(x => ({
+            name: x.name
+            , temporaryQuestionCount: x.questions.length
+          }));
+        }
+        , error => {
+          console.error(error.error);
+          this.failedToLoadQuizzes = true;
+        }
+          
+      )
     console.log(this.quizzes);
   }
 
