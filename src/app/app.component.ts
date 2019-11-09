@@ -42,6 +42,7 @@ export class AppComponent implements OnInit {
           this.quizzes = (<any[]> data).map(x => ({
             name: x.name
             , temporaryQuestionCount: x.questions.length
+            , questions: x.questions
           }));
         }
         , error => {
@@ -58,6 +59,9 @@ export class AppComponent implements OnInit {
   selectQuiz(q) {
     this.selectedQuiz = q;
     console.log(this.selectedQuiz.name);
+    for(let i=0;i<this.selectedQuiz.questions.length;i++) {
+      console.log(this.selectedQuiz.questions.name[0]);
+    }
   }
 
   addNewQuiz() {

@@ -24,6 +24,7 @@
           [class.active]="q == selectedQuiz"
         >
           {{ q.name }}
+          {{ q.questions.name }}
           <small
             class="font-italic font-weight-lighter"
             [class.text-danger]="q.temporaryQuestionCount == 0 && q != selectedQuiz"
@@ -73,7 +74,12 @@
       </div>
       <div class="card mb-3">
         <div class="card-header">
-          Questions
+          <button 
+            class="btn btn-outline-success mb-3"
+            (click)="addNewQuestion()"
+          >
+            Add Questions
+          </button>
           <span
             *ngIf="selectedQuiz.temporaryQuestionCount == 0"
             class="text-danger"
@@ -82,7 +88,10 @@
           </span>
         </div>
         <div class="card-body">
-          Coming soon!
+          <div
+
+          >
+          </div>
         </div>
       </div>
         <div class="card">
