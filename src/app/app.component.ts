@@ -60,6 +60,11 @@ export class AppComponent implements OnInit {
     console.log(this.selectedQuiz.name);
   }
 
+  selectQuizQuestion(q) {
+    this.selectedQuiz = q;
+    console.log(this.selectedQuiz.questions)
+  }
+
   addNewQuiz() {
 
     const newQuiz = { 
