@@ -87,13 +87,13 @@
           </span>
         </div>
         <div class="card-body">
-          <div
+          <ol
           *ngFor="let question of this.selectedQuiz.questions"
           >
-          <p>
-              {{ question.name }}
-          </p>
-          </div>
+            <li>
+                {{ question.name }}
+            </li>
+          </ol>
         </div>
       </div>
         <div class="card">
