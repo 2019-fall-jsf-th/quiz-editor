@@ -90,9 +90,9 @@
           <div
           *ngFor="let question of this.selectedQuiz.questions"
           >
-          <p
-          [(ngModel)]="question.name"
-          ></p>
+          <p>
+              {{ question.name }}
+          </p>
           </div>
         </div>
       </div>
