@@ -24,7 +24,6 @@
           [class.active]="q == selectedQuiz"
         >
           {{ q.name }}
-          {{ q.questions.name }}
           <small
             class="font-italic font-weight-lighter"
             [class.text-danger]="q.temporaryQuestionCount == 0 && q != selectedQuiz"
@@ -89,8 +88,11 @@
         </div>
         <div class="card-body">
           <div
-
+          *ngFor="let question of this.selectedQuiz.questions"
           >
+          <p
+          [(ngModel)]="question.name"
+          ></p>
           </div>
         </div>
       </div>
