@@ -4,7 +4,11 @@ import { QuizService } from './quiz.service';
 
 interface QuizDisplay {
   name: string;
-  temporaryQuestionCount: number;
+  questions: DisplayedQuestion[];
+}
+
+interface DisplayedQuestion {
+  name: string;
 }
 
 @Component({
@@ -34,7 +38,7 @@ export class AppComponent implements OnInit {
   
   // Refractor to use ngOnInit() rather than using constructor to load our quizzes
   ngOnInit() {
-    this.quizzes = [];
+    //this.quizzes = [];
 
     this.qSvc
       .loadQuizzes()
@@ -45,7 +49,7 @@ export class AppComponent implements OnInit {
           console.log('woohoo');
           this.quizzes = (<any[]> data).map(x => ({
             name: x.name
-            , temporaryQuestionCount: x.questions.length
+            , questions: x.questions
           }));
         }
         , error => {
@@ -68,7 +72,7 @@ export class AppComponent implements OnInit {
   addNewQuiz() {
     const newQuiz = { 
       name: 'Untitled Quiz'
-      , temporaryQuestionCount: 0};
+      , questions: []};
 
     this.quizzes = [
       ...this.quizzes

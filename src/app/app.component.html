@@ -32,10 +32,10 @@
               where q is our Array property -->
           <small
             class="font-italic font-weight-lighter"
-            [class.text-danger]="q.temporaryQuestionCount == 0 && q != selectedQuiz"
+            [class.text-danger]="q.questions.length == 0 && q != selectedQuiz"
             [class.text-white]="q == selectedQuiz"
           >
-            {{ q.temporaryQuestionCount }} questions
+            {{ q.questions.length }} questions
           </small>
           </button>
       </div>
@@ -86,19 +86,30 @@
         <div class="card-header">
           Questions
           <span
-            *ngIf="selectedQuiz.temporaryQuestionCount == 0"
+            *ngIf="selectedQuiz.questions.length == 0"
             class="text-danger"
           >
             (No Questions)
           </span>
-        </div>
-        <div class="card-body">
           <button
             class="btn btn-outline-success mb-3"
             (click)="addNewQuestion()"
           >
             Add Question
           </button>
+        </div>
+        <div class="card-body">
+          
+          <div 
+            class="form-row"
+            *ngFor="let question of this.selectedQuiz.questions"
+          >
+            <input 
+              class="form-control mb-3"
+              type="text"
+              [(ngModel)]="question.name"
+            >
+          </div>
         </div>
       </div>
         <div class="card">
