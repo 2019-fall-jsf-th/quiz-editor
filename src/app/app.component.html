@@ -69,6 +69,7 @@
         <div class="card-header">
           <button 
           class="btn btn-outline-success mb-3"
+          (click)="addNewQuestion()"
           >Add Question</button>
           <span
             *ngIf="selectedQuiz.questions.length == 0"
