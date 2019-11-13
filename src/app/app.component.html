@@ -79,10 +79,16 @@
         *ngFor="let question of this.selectedQuiz.questions"
         class ="form-row">
           <input 
-          class="form-control com-md-10 mb3"
+          class="form-control col-md-10 mb-3"
           type="text"
           [(ngModel)]="question.name"
           >
+          <button
+          class="btn btn-link text-danger col-md-2 mb-3"
+          (click)="removeQuestion(question)"
+          >
+          <img src="\assets\trash-can.png" alt="red trash can" width="35" height="35">
+          </button>
         </div>
               
         </div>
