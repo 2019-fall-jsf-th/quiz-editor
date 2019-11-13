@@ -105,10 +105,16 @@
             *ngFor="let question of this.selectedQuiz.questions"
           >
             <input 
-              class="form-control mb-3"
+              class="form-control mb-3 col-md-10"
               type="text"
               [(ngModel)]="question.name"
             >
+            <button
+              (click)="removeQuestion(question)"
+              class="btn btn-link mb-3 col-md-2"
+            >
+              Remove
+            </button>
           </div>
         </div>
       </div>

@@ -81,6 +81,9 @@ export class AppComponent implements OnInit {
   }
 
   addNewQuestion() {
-    this.selectedQuiz.questions = [...this.selectedQuiz.questions, { name: "New question"}];
+    this.selectedQuiz.questions = [
+      ...this.selectedQuiz.questions
+      , { name: "New question"}
+    ];
   }
 }
