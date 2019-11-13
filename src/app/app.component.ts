@@ -86,4 +86,9 @@ export class AppComponent implements OnInit {
       , { name: "New question"}
     ];
   }
+
+  // use filter - b/c you want items in resulting array to match criteria set
+  removeQuestion(question) {
+    this.selectedQuiz.questions = this.selectedQuiz.questions.filter(x => x !== question);
+  }
 }
