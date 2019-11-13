@@ -3,7 +3,6 @@ import { QuizService } from './quiz.service';
 
 interface QuizDisplay {
   name: string;
-  temporaryQuestionCount: number;
 }
 
 @Component({
@@ -41,7 +40,6 @@ export class AppComponent implements OnInit {
           console.log('woo hoo');
           this.quizzes = (<any[]> data).map(x => ({
             name: x.name
-            , temporaryQuestionCount: x.questions.length
             , questions: x.questions
           }));
         }
@@ -60,6 +58,7 @@ export class AppComponent implements OnInit {
     this.selectedQuiz = q;
     console.log(this.selectedQuiz);
     console.log(this.selectedQuiz.name);
+    // selected a specific question but directing towards a spot in the questions array and grabbing the value of that spot's name
     console.log(this.selectedQuiz.questions[0].name);
     console.log("questions: ");
     for(let i=0;i<this.selectedQuiz.questions.length;i++) {
@@ -83,14 +82,12 @@ export class AppComponent implements OnInit {
   }
 
   addNewQuestion() {
-
-    const newQuestion = {
-      name: 'Untitled question'
-    };
-
-    this.quizzes = [
-      ...this.quizzes
-      , newQuestion
+    // Make sure code is directed towards the currently selected quiz
+    this.selectedQuiz.questions = [
+      // Spread into the quizzes questions the current questions as well as...
+      ...this.selectedQuiz.questions
+      // ... a new question named "new question" 
+      , { name: "New Question" }
     ];
   }
 
