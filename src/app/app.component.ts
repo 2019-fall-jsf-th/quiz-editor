@@ -41,6 +41,7 @@ export class AppComponent implements OnInit {
           this.quizzes = (<any[]> data).map(x => ({
             name: x.name
             , temporaryQuestionCount: x.questions.length
+            , questions: x.questions
           }));
           
         }
