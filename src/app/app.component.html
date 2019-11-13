@@ -24,10 +24,11 @@
           {{ q.name }}
           <small
             class="font-italic font-weight-lighter"
-            [class.text-danger]="q.temporaryQuestionCount == 0 && q != selectedQuiz"
+            [class.text-danger]="q.questions.length == 0 && q != selectedQuiz"
+
             
           >
-          {{ q.temporaryQuestionCount }} questions</small>
+          {{ q.questions.length }} questions</small>
         </button>
       </div>
     </div>
@@ -66,21 +67,24 @@
       </div>
       <div class="card mb-3">
         <div class="card-header">
-          <button class="btn btn-outline-dark mb-3">Add Question</button>
+          <button class="btn btn-outline-success mb-3">Add Question</button>
           <span
-            *ngIf="selectedQuiz.temporaryQuestionCount == 0"
+            *ngIf="selectedQuiz.questions.length == 0"
             class="text-danger"
           >&nbsp;(No Questions)</span>
         </div>
         <div class="card-body">
-        
-          <ol
-          *ngFor="let question of this.selectedQuiz.questions"
+         
+        <div
+        *ngFor="let question of this.selectedQuiz.questions"
+        class ="form-row">
+          <input 
+          class="form-control com-md-10 mb3"
+          type="text"
+          [(ngModel)]="question.name"
           >
-            <li>
-              {{question.name}}
-            </li>
-          </ol>
+        </div>
+              
         </div>
       </div>
         <div class="card">
