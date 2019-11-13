@@ -71,7 +71,7 @@ export class AppComponent implements OnInit {
 
     const newQuiz = { 
       name: 'Untitled Quiz'
-      , temporaryQuestionCount: 0
+      , questions: []
     };
 
     this.quizzes = [
@@ -80,6 +80,18 @@ export class AppComponent implements OnInit {
     ];
 
     this.selectQuiz(newQuiz);
+  }
+
+  addNewQuestion() {
+
+    const newQuestion = {
+      name: 'Untitled question'
+    };
+
+    this.quizzes = [
+      ...this.quizzes
+      , newQuestion
+    ];
   }
 
   removeQuestion() {

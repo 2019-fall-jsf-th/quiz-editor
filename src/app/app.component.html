@@ -87,13 +87,18 @@
           </span>
         </div>
         <div class="card-body">
-          <ol
+          <ul
           *ngFor="let question of this.selectedQuiz.questions"
           >
             <li>
                 {{ question.name }}
             </li>
-          </ol>
+            <button
+
+              (click)=" addNewQuestion()"
+            >
+            </button>
+          </ul>
         </div>
       </div>
         <div class="card">
