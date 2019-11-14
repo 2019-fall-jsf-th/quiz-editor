@@ -81,19 +81,29 @@
             (No Questions)
           </span>
           <!--This is where the "Add Question" button is going to stay-->
-          <button class="btn btn-outline-success mb-3"
-      (click)="addNewQuestion()"
+          
+      <div class="card-body">
+        <button 
+        class="btn btn-outline-success mb-3"
+        (click)="addNewQuestion()"
       >
-        Add Question
+        Add New Question
       </button>
-      <br>
-      
-        </div>
-         
-        <div class="card-body" ng-repeat="input in inputlist">
-          <input class="form-control" type="text" ng-model="input.content">
-          <input type="button" ng-click="remove(input)" value="remove" style="margin-top: 10px;">
-        </div>
+      <div
+        *ngFor="let question of this.selectedQuiz.questions"
+        class="form-row"
+      >
+        <input 
+          class="form-control col-md-10 mb-3"
+          type="text"
+          [(ngModel)]="question.name"
+        >
+        <button 
+          class="btn btn-link text-danger col-md-2 mb-3"
+          (click)="removeQuestion(question)"
+        >
+          Remove
+        </button>
       
         <div class="card">
           <div class="card-header">
