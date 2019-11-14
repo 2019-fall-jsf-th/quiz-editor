@@ -3,10 +3,12 @@ import { QuizService } from './quiz.service';
 
 export interface QuizDisplay {
   name: string;
-  questionCount: number;
   questions: string[];
 }
 
+export interface QuestionDisplay {
+  name: string;
+}
 
 @Component({
   selector: 'app-root',
@@ -41,7 +43,6 @@ export class AppComponent implements OnInit {
           this.quizzes = (<QuizDisplay[]> data).map(
               x => ({
                 name: x.name
-                , questionCount: x.questions.length
                 , questions: x.questions
               })
           );
@@ -49,11 +50,7 @@ export class AppComponent implements OnInit {
         , error => {
           console.error(error.error);
           this.failedToLoadQuizzes = true;
-        })
-      // .map(x => ({
-      //   name: x.name
-      //   , tempQuestionCount: x.questionCount
-      // }));
+        });
     console.log(this.quizzes);
   }
 
@@ -66,7 +63,7 @@ export class AppComponent implements OnInit {
   }
 
   addNewQuiz(): number {
-    let newQuiz = {'name': 'Untitled', 'questionCount': 0, 'questions':[]};
+    let newQuiz = {'name': 'Untitled', 'questions':[]};
     let appendIndex = this.quizzes.length;
 
     this.quizzes = [
@@ -87,17 +84,10 @@ export class AppComponent implements OnInit {
 
   addQuestion() {
     this.selectedQuiz.questions = [...this.selectedQuiz.questions, {name: "New Question"}];
-    this.selectedQuiz.questionCount = this.selectedQuiz.questions.length;
   }
 
   removeQuestion(question) {
     console.log(`question: ${question}`);
     this.selectedQuiz.questions = this.selectedQuiz.questions.filter( (q, index) => q !== question );
-    this.selectedQuiz.questionCount = this.selectedQuiz.questions.length;
   }
-
-  // updateQuiz(name='', questionCount=0) {
-  //   this.selectedQuiz.name = name;
-  //   this.selectedQuiz.questionCount = questionCount;
-  // }
 }
