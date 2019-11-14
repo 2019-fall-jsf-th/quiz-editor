@@ -2,8 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { QuizService } from './quiz.service';
 
 interface QuizDisplay {
-    name: string;
-    questionCount: number;
+  name: string;
+  questions: QuestionDisplay[];
+}
+
+interface QuestionDisplay {
+  name: string;
 }
 
 @Component({
@@ -27,33 +31,33 @@ export class AppComponent implements OnInit {
 
   constructor(private qSvc: QuizService) {}
 
-  selectedQuiz = undefined;
-
   failedToLoadQuizzes = false;
+
   ngOnInit() {
-    //this.quizzes = []; 
+    
+    //this.quizzes = [];
     
     this.qSvc
       .loadQuizzes()
       .subscribe(
         data => {
-          
           console.log(data);
-          console.log('Woo Hoo');
-          this.quizzes = (<any[]>data).map(x => ({
+          console.log('woo hoo');
+          this.quizzes = (<any[]> data).map(x => ({
             name: x.name
-            , questionCount: x.questions.length
+            , questions: x.questions
           }));
         }
         , error => {
           console.error(error.error);
           this.failedToLoadQuizzes = true;
         }
-      );
-   
+      )
+
     console.log(this.quizzes);
   }
-  
+
+  selectedQuiz = undefined;
 
   selectQuiz(q) {
     this.selectedQuiz = q;
@@ -61,16 +65,18 @@ export class AppComponent implements OnInit {
   }
 
   addNewQuiz() {
+
     const newQuiz = { 
       name: 'Untitled Quiz'
-      , questionCount: 0 }
+      , questions: []
+    };
 
     this.quizzes = [
       ...this.quizzes
       , newQuiz
     ];
 
-    this.selectedQuiz(newQuiz);
+    this.selectQuiz(newQuiz);
   }
 
   addNewQuestion() {
@@ -84,4 +90,3 @@ export class AppComponent implements OnInit {
     this.selectedQuiz.questions = this.selectedQuiz.questions.filter(x => x !== question);
   }
 }
-
