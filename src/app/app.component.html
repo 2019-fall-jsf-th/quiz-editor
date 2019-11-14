@@ -90,14 +90,19 @@
           </button>
           <br>
           <div
-            class="form-row"
+            class="form-row mb-3"
             *ngFor="let question of this.selectedQuiz.quizQuestions"
           >
             <input 
               type="text"
-              class="form-control mb-2"
+              class="form-control mb-2 col-md-8"
               [(ngModel)]="this.question.name"
             >
+            <button 
+              class="btn btn-outline-danger col-sm-2 ml-2"
+            >
+              Remove
+            </button>
           </div>
           
         </div>
