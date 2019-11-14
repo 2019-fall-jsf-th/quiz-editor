@@ -93,7 +93,7 @@
 
           <div class="card-header">
             <h5><label for="question_{{ i + 1 }}">Question {{ i + 1 }}</label></h5>
-            <button (click)="removeQuestion(question.name)">Remove</button>
+            <a class="text-danger" (click)="removeQuestion(question)">Remove</a>
           </div>
 
           <div class="card-body">

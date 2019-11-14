@@ -85,14 +85,15 @@ export class AppComponent implements OnInit {
     }
   }
 
-  addQuestion(question=''): boolean {
-    this.selectedQuiz.questions.push(question);
+  addQuestion() {
+    this.selectedQuiz.questions = [...this.selectedQuiz.questions, {name: "New Question"}];
     this.selectedQuiz.questionCount = this.selectedQuiz.questions.length;
   }
 
-  removeQuestion(questionName: string) {
-    console.log(questionName);
-    this.selectedQuiz.questions = this.selectedQuiz.questions.filter( (q) => q.name != questionName );
+  removeQuestion(question) {
+    console.log(`question: ${question}`);
+    this.selectedQuiz.questions = this.selectedQuiz.questions.filter( (q, index) => q !== question );
+    this.selectedQuiz.questionCount = this.selectedQuiz.questions.length;
   }
 
   // updateQuiz(name='', questionCount=0) {
