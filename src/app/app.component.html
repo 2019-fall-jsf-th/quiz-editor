@@ -2,22 +2,22 @@
   <div 
     class="row"
     *ngIf="failedToLoadQuizzes"
-  
-  > 
-  <h3>Failed to load quizzes, please refresh the page and try again...</h3>
-  
+  >
+    <h3>Failed to load quizzes, please refresh page to try again...</h3>
   </div>
-  <div class="row"
+  <div 
+    class="row"
     *ngIf="!failedToLoadQuizzes"
   >
     <div class="col-md-4">
-      <button class="btn btn-outline-success mb-3"
-      (click)="addNewQuiz()"
+      <button 
+        class="btn btn-outline-success mb-3"
+        (click)="addNewQuiz()"
       >
         Add New Quiz
       </button>
       <div class="list-group mb-3">
-        <button
+        <button 
           class="list-group-item d-flex justify-content-between align-items-center"
           *ngFor="let q of quizzes"
           (click)="selectQuiz(q)"
@@ -25,13 +25,13 @@
         >
           {{ q.name }}
           <small
-            class="font-italic font weight-lighter"
-            [class.text-danger]="q.questionCount == 0 && q != selectedQuiz"
+            class="font-italic font-weight-lighter"
+            [class.text-danger]="q.questions.length == 0 && q != selectedQuiz"
             [class.text-white]="q == selectedQuiz"
-          >{{ q.questionCount }} question(s)
-        
-        </small>
-      </button>
+          >
+            {{ q.questions.length }} questions
+          </small>
+        </button>
       </div>
     </div>
     <div 
@@ -75,36 +75,37 @@
         <div class="card-header">
           Questions
           <span
-            *ngIf="selectedQuiz.questionCount == 0"
+            *ngIf="selectedQuiz.questions.length == 0"
             class="text-danger"
           >
             (No Questions)
           </span>
-          <!--This is where the "Add Question" button is going to stay-->
-          
-      <div class="card-body">
-        <button 
-        class="btn btn-outline-success mb-3"
-        (click)="addNewQuestion()"
-      >
-        Add New Question
-      </button>
-      <div
-        *ngFor="let question of this.selectedQuiz.questions"
-        class="form-row"
-      >
-        <input 
-          class="form-control col-md-10 mb-3"
-          type="text"
-          [(ngModel)]="question.name"
+        </div>
+        <div class="card-body">
+          <button 
+          class="btn btn-outline-success mb-3"
+          (click)="addNewQuestion()"
         >
-        <button 
-          class="btn btn-link text-danger col-md-2 mb-3"
-          (click)="removeQuestion(question)"
-        >
-          Remove
+          Add New Question
         </button>
-      
+        <div
+          *ngFor="let question of this.selectedQuiz.questions"
+          class="form-row"
+        >
+          <input 
+            class="form-control col-md-10 mb-3"
+            type="text"
+            [(ngModel)]="question.name"
+          >
+          <button 
+            class="btn btn-link text-danger col-md-2 mb-3"
+            (click)="removeQuestion(question)"
+          >
+            Remove
+          </button>
+        </div>
+        </div>
+      </div>
         <div class="card">
           <div class="card-header">
             Other
