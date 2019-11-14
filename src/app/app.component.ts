@@ -90,4 +90,9 @@ export class AppComponent implements OnInit {
 
     this.selectQuiz(newQuiz);
   }
+
+  removeQuestion() {
+    console.log('hey I\'m workin here');
+
+  }
 }

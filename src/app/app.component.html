@@ -99,7 +99,8 @@
               [(ngModel)]="this.question.name"
             >
             <button 
-              class="btn btn-outline-danger col-sm-2 ml-2"
+              class="btn btn-outline-danger btn-sm ml-2"
+              (click)="removeQuestion()"
             >
               Remove
             </button>
