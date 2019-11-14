@@ -88,10 +88,15 @@
             Add Question
           </button>
           <br>
+          <div
+            class="form-row"
+            *ngFor="let q of selectedQuiz.questions"
+          >
+
+          </div>
           <input 
             type="text"
             class="form-control mb-2"
-            *ngFor="let q of selectedQuiz.quizQuestions"
             [(ngModel)]="selectedQuiz.quizQuestions.question"
           >
         </div>
