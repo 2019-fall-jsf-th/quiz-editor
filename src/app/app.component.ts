@@ -91,7 +91,9 @@ export class AppComponent implements OnInit {
     ];
   }
 
-  removeQuestion() {
-    
+  removeQuestion(question) {
+    // get the selected quiz and filter out the selected question passed through via the
+    // html method call
+    this.selectedQuiz.questions = this.selectedQuiz.questions.filter(x => x !== question);
   }
 }

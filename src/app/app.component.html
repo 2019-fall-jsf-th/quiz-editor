@@ -73,32 +73,39 @@
       </div>
       <div class="card mb-3">
         <div class="card-header">
-          <button 
-            class="btn btn-outline-success mb-3"
-            (click)="addNewQuestion()"
-          >
-            Add Questions
-          </button>
           <span
             *ngIf="selectedQuiz.questions.length == 0"
             class="text-danger"
           >
             (No Questions)
           </span>
-        </div>
-        <div class="card-body">
-          <ul
-          *ngFor="let question of this.selectedQuiz.questions"
+          Questions
+          <button 
+            class="btn btn-outline-success mb-3"
+            (click)="addNewQuestion()"
           >
-            <li>
-                {{ question.name }}
-            </li>
-            <button
+            Add Question
+          </button>
+        </div>
 
-              (click)=" addNewQuestion()"
-            >
-            </button>
-          </ul>
+        <div 
+          class="card-body"
+          *ngFor="let question of this.selectedQuiz.questions"
+        >
+          <div>
+          <input 
+            class="form-control"
+            type="text"
+            [(ngModel)]="question.name"
+            placeholder="Add new question here"
+          >
+          <button
+            class="btn btn-danger"
+            (click)="removeQuestion(question)"
+          >
+            Delete Question
+          </button>
+          </div>
         </div>
       </div>
         <div class="card">
