@@ -90,10 +90,10 @@
           <br>
           <input 
             type="text"
-            class="form-control"
-            
+            class="form-control mb-2"
+            *ngFor="let q of selectedQuiz.quizQuestions"
+            [(ngModel)]="selectedQuiz.quizQuestions.question"
           >
-          Coming soon!
         </div>
       </div>
         <div class="card">
