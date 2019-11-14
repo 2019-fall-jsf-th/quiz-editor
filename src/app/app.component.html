@@ -90,15 +90,15 @@
           <br>
           <div
             class="form-row"
-            *ngFor="let q of selectedQuiz.questions"
+            *ngFor="let question of this.selectedQuiz.quizQuestions"
           >
-
+            <input 
+              type="text"
+              class="form-control mb-2"
+              [(ngModel)]="this.question.name"
+            >
           </div>
-          <input 
-            type="text"
-            class="form-control mb-2"
-            [(ngModel)]="selectedQuiz.quizQuestions.question"
-          >
+          
         </div>
       </div>
         <div class="card">
