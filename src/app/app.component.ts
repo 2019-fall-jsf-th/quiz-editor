@@ -65,8 +65,9 @@ export class AppComponent implements OnInit {
     console.log(this.selectedQuiz.name);
   }
 
-  addNewQuiz() {
+  addNewQuiz(): number {
     let newQuiz = {'name': 'Untitled', 'questionCount': 0, 'questions':[]};
+    let appendIndex = this.quizzes.length;
 
     this.quizzes = [
       ...this.quizzes
@@ -75,6 +76,23 @@ export class AppComponent implements OnInit {
 
     this.selectQuiz(newQuiz);
     console.table('addNewQuiz', this.selectedQuiz);
+    return appendIndex;
+  }
+
+  getQuiz(index: number): QuizDisplay {
+    if (index < this.quizzes.length) {
+      return this.quizzes[index];
+    }
+  }
+
+  addQuestion(question=''): boolean {
+    this.selectedQuiz.questions.push(question);
+    this.selectedQuiz.questionCount = this.selectedQuiz.questions.length;
+  }
+
+  removeQuestion(questionName: string) {
+    console.log(questionName);
+    this.selectedQuiz.questions = this.selectedQuiz.questions.filter( (q) => q.name != questionName );
   }
 
   // updateQuiz(name='', questionCount=0) {

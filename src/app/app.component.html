@@ -65,32 +65,46 @@
           General
         </div>
         <div class="card-body">
-          <label>Name</label>
+          <label>Name
           <input
             class="form-control"
             type="text"
             [(ngModel)]="selectedQuiz.name"
-          >
+          ></label>
         </div>
       </div>
       <div class="card mb-3">
         <div class="card-header">
-          Questions
+
+          <h4>Questions</h4>
+
           <span
             *ngIf="selectedQuiz.questionCount === 0"
             class="text-danger"
-          > (no questions yet)</span>
+          >(no questions yet)</span>
+
+          <button (click)="addQuestion()">
+            Add Question
+          </button>
+
         </div>
-        <div class="card-body">
-          Coming soon!
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header">
-          Other
-        </div>
-        <div class="card-body">
-          Coming soon!
+        <div *ngFor="let question of selectedQuiz.questions; let i = index"
+                class="card">
+
+          <div class="card-header">
+            <h5><label for="question_{{ i + 1 }}">Question {{ i + 1 }}</label></h5>
+            <button (click)="removeQuestion(question.name)">Remove</button>
+          </div>
+
+          <div class="card-body">
+            <input
+              id="question_{{ i + 1 }}"
+              class="form-control"
+              type="text"
+              [(ngModel)]="question.name"
+            >
+          </div>
+
         </div>
       </div>
     </div>
