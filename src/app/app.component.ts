@@ -67,7 +67,7 @@ export class AppComponent implements OnInit {
   addNewQuiz() {
 
     const newQuiz = { 
-      name: 'Untitled Quiz'
+      name: 'Untitled Quiz Name'
       , questions: []
     };
 
@@ -82,7 +82,7 @@ export class AppComponent implements OnInit {
   addNewQuestion() {
     this.selectedQuiz.questions = [
       ...this.selectedQuiz.questions
-      , { name: "New Question" }
+      , { name: "Type your question here" }
     ];
   }
 
