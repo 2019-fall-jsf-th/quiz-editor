@@ -18,4 +18,13 @@ export class QuizService {
     //   , { name: "Quiz 3", questionCount: 25 }
     // ];
   }
+
+  // get magic numbers, get boolean, return promise of type number
+  getMagicNumberPromise(makeThisPromiseSucceed: boolean): Promise<number> {
+    let p = new Promise<number>(
+        // lambda that goes to something
+      (resolve, reject) => makeThisPromiseSucceed ? resolve(42) : reject("Failed!") // 
+    );
+    return p;
+  }
 }

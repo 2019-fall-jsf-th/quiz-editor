@@ -89,4 +89,27 @@ export class AppComponent implements OnInit {
   removeQuestion(question) {
     this.selectedQuiz.questions = this.selectedQuiz.questions.filter(x => x !== question);
   }
+
+
+  // call async. to get a magic number... then call again to get the same magic number
+  // if failed, the code below x or y will not continue
+  jsPromiseOne() {
+    const x = this.qSvc.getMagicNumberPromise(false);
+    console.log(x);
+
+    // then is a function that takes a lambda that says when its done, it will give you 
+    x.then(
+      n => {
+        console.log(n);
+
+        const y = this.qSvc.getMagicNumberPromise(true);
+        console.log(y);
+
+        y.then(n => console.log(n));
+      }
+    )
+    // if you have a promise, want to catch errors just in case if the promise fails
+    .catch(err => console.error(err))
+  }
+
 }
