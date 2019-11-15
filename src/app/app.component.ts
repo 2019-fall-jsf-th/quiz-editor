@@ -92,4 +92,23 @@ export class AppComponent implements OnInit {
   removeQuestion(question) {
     this.selectedQuiz.questions = this.selectedQuiz.questions.filter(x => x !== question);
   }
+
+  // Promises - nesting of promises
+  jsPromisesOne() {
+    const x = this.qSvc.getMagicNumberPromise(false);
+    console.log(x); // ??? -> will return ZoneAwarePromise
+
+    x.then(
+      n => {
+        console.log(n);
+
+        const y = this.qSvc.getMagicNumberPromise(true);
+        console.log(y); // ???
+
+        y.then(n => console.log(n));
+      }
+    )
+
+    .catch(err => console.error(err))
+  }
 }
