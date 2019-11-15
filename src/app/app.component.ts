@@ -93,22 +93,47 @@ export class AppComponent implements OnInit {
     this.selectedQuiz.questions = this.selectedQuiz.questions.filter(x => x !== question);
   }
 
+
   // Promises - nesting of promises
+  // .then returns new promises - set up so you can chain them?
   jsPromisesOne() {
-    const x = this.qSvc.getMagicNumberPromise(false);
+    const x = this.qSvc.getMagicNumberPromise(true);
     console.log(x); // ??? -> will return ZoneAwarePromise
+
+    // Kevin asked about this - presumes what async await does?
+    let z = x.then();
+    console.log(z);
 
     x.then(
       n => {
         console.log(n);
 
-        const y = this.qSvc.getMagicNumberPromise(true);
+        const y = this.qSvc.getMagicNumberPromise(false);
         console.log(y); // ???
 
-        y.then(n => console.log(n));
+        y.then(n => console.log(n)).catch(err => console.error(err));
       }
     )
 
     .catch(err => console.error(err))
   }
+
+  // ways to get out of .then .catch hell
+  // the await is taking the .then nonsense and making it work
+  // use try catch block to catch errors
+  async jsPromisesTwo() {
+    try {
+      const x = await this.qSvc.getMagicNumberPromise(true);
+      console.log(x); // ??? will get 42 if true, uncaught error if false if not in try/catch block
+  
+      const y = await this.qSvc.getMagicNumberPromise(false);
+      console.log(y); // ??? will get 42 if true, will get error message if false
+    }
+
+    catch(err) {
+      console.error(err);
+    }
+    
+  }
+
 }
