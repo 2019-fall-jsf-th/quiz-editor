@@ -40,6 +40,7 @@
           *ngFor="let q of quizzes"
           (click)="selectQuiz(q)"
           [class.active]="q == selectedQuiz"
+          [style.text-decoration]="q.markedForDelete ? 'line-through' : 'inherit'"
         >
           {{ q.name }}
           <small
@@ -136,7 +137,11 @@
                 id="defaultCheck1"
                 [(ngModel)]="selectedQuiz.markedForDelete"
                 >
-              <label class="form-check-label" for="defaultCheck1">
+              <label 
+                class="form-check-label" 
+                for="defaultCheck1"
+                [class.text-danger]="selectedQuiz.markedForDelete"
+                >
                 Marked for Delete!!
               </label>
             </div>
