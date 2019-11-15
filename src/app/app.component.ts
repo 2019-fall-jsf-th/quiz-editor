@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizService } from './quiz.service';
 
-
+// an interface is just a ? of data
+// removed temporaryQuestionCount, and added a questions array
 interface QuizDisplay {
   name: string;
   questions: DisplayedQuestion[];
@@ -68,7 +69,7 @@ export class AppComponent implements OnInit {
     console.log(this.selectedQuiz.name);
   }
 
-  
+  // changed questions to an empty array b/c new quizzes will have no questions
   addNewQuiz() {
     const newQuiz = { 
       name: 'Untitled Quiz'

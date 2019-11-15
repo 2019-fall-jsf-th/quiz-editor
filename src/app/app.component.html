@@ -85,12 +85,14 @@
       <div class="card mb-3">
         <div class="card-header">
           Questions
+          <!-- If no questions in the quiz, output text in red -->
           <span
             *ngIf="selectedQuiz.questions.length == 0"
             class="text-danger"
           >
             (No Questions)
           </span>
+          <!-- Add new question to quiz -->
           <button
             class="btn btn-outline-success mb-3"
             (click)="addNewQuestion()"
@@ -99,16 +101,18 @@
           </button>
         </div>
         <div class="card-body">
-          
+          <!-- Output quiz questions to the page -->
           <div 
             class="form-row"
             *ngFor="let question of this.selectedQuiz.questions"
           >
+            <!-- bind question name -->
             <input 
               class="form-control mb-3 col-md-10"
               type="text"
               [(ngModel)]="question.name"
             >
+            <!-- Remove question -->
             <button
               (click)="removeQuestion(question)"
               class="btn btn-link mb-3 col-md-2"
