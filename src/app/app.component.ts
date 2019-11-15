@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizService } from './quiz.service';
 
-// an interface is just a ? of data
+// an interface is just a ? of data, shapes data?
 // removed temporaryQuestionCount, and added a questions array
 interface QuizDisplay {
   name: string;
   questions: DisplayedQuestion[];
+  markedForDelete: boolean;
 }
 
 interface DisplayedQuestion {
@@ -51,6 +52,7 @@ export class AppComponent implements OnInit {
           this.quizzes = (<any[]> data).map(x => ({
             name: x.name
             , questions: x.questions
+            , markedForDelete: false
           }));
         }
         , error => {
@@ -73,7 +75,9 @@ export class AppComponent implements OnInit {
   addNewQuiz() {
     const newQuiz = { 
       name: 'Untitled Quiz'
-      , questions: []};
+      , questions: []
+      , markedForDelete: false
+    };
 
     this.quizzes = [
       ...this.quizzes

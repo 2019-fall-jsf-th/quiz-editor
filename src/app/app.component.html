@@ -147,7 +147,17 @@
             Other
           </div>
           <div class="card-body">
-            Coming soon!
+            <div class="form-check">
+              <input 
+                class="form-check-input" 
+                type="checkbox" value="" 
+                id="defaultCheck1"
+                [(ngModel)]="selectedQuiz.markedForDelete"
+              >
+              <label class="form-check-label" for="defaultCheck1">
+                Mark for delete
+              </label>
+            </div>
           </div>
         </div>
       </div>
