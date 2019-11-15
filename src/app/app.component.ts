@@ -91,8 +91,8 @@ export class AppComponent implements OnInit {
     this.selectQuiz(newQuiz);
   }
 
-  removeQuestion() {
+  removeQuestion(question) {
     console.log('hey I\'m workin here');
-
+    this.selectedQuiz
   }
 }
