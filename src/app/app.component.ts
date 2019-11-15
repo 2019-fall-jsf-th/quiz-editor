@@ -94,7 +94,7 @@ export class AppComponent implements OnInit {
   // call async. to get a magic number... then call again to get the same magic number
   // if failed, the code below x or y will not continue
   jsPromiseOne() {
-    const x = this.qSvc.getMagicNumberPromise(false);
+    const x = this.qSvc.getMagicNumberPromise(true);
     console.log(x);
 
     // then is a function that takes a lambda that says when its done, it will give you 
@@ -102,14 +102,29 @@ export class AppComponent implements OnInit {
       n => {
         console.log(n);
 
-        const y = this.qSvc.getMagicNumberPromise(true);
+        const y = this.qSvc.getMagicNumberPromise(false);
         console.log(y);
 
-        y.then(n => console.log(n));
+        y.then(n => console.log(n)).catch(err => console.error(err));
       }
     )
     // if you have a promise, want to catch errors just in case if the promise fails
     .catch(err => console.error(err))
+  }
+
+  // This is the same code as above, just streamlined and way better
+  async jsPromiseTwo() {
+    try {
+      const x = await this.qSvc.getMagicNumberPromise(false);
+      console.log(x);
+  
+      const y = await this.qSvc.getMagicNumberPromise(true);
+      console.log(y);
+    } 
+    catch(err) {
+      console.error(err);
+    }
+    
   }
 
 }
