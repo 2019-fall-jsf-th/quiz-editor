@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizService } from './quiz.service';
-import { ConsoleReporter } from 'jasmine';
+
 
 interface QuizDisplay {
   name: string;
   questions: QuestionDisplay[];
+  markedForDelete: boolean;
 }
 
 interface QuestionDisplay {
@@ -47,6 +48,7 @@ export class AppComponent implements OnInit {
           this.quizzes = (<any[]> data).map(x => ({
             name: x.name
             , questions: x.questions
+            , markedForDelete: false
           }));
         }
         , error => {
@@ -70,11 +72,13 @@ export class AppComponent implements OnInit {
     const newQuiz = { 
       name: 'Untitled Quiz'
       , questions: []
+      ,markedForDelete: false
     };
 
     this.quizzes = [
       ...this.quizzes
       , newQuiz
+      
     ];
 
     this.selectQuiz(newQuiz);
