@@ -90,7 +90,7 @@ export class AppComponent implements OnInit {
     this.selectedQuiz.questions = this.selectedQuiz.questions.filter(x => x !== question);
   }
 
-  jsPromiseOne() {
+  jsPromisesOne() {
     const x = this.qSvc.getMagicNumberPromise(true);
     console.log(x);
 
@@ -106,5 +106,5 @@ export class AppComponent implements OnInit {
     )
     .catch(err => console.log(err))
   }
-
+  
 }
