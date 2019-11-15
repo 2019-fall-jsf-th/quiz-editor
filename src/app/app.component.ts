@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizService } from './quiz.service';
+import { ConsoleReporter } from 'jasmine';
 
 interface QuizDisplay {
   name: string;
@@ -88,5 +89,24 @@ export class AppComponent implements OnInit {
 
   removeQuestion(question) {
     this.selectedQuiz.questions = this.selectedQuiz.questions.filter(x => x !== question);
+  }
+
+  jsPromisesOne() {
+    //using a true parameter for the getMagicNumberPromise method it will go into the .then and run that code
+    //const x = this.qSvc.getMagicNumberPromise(true)
+    //if using a false parameter for the getMagicNumberPromise method it will not go into the .then and you must use a .catch
+    const x = this.qSvc.getMagicNumberPromise(false);
+    console.log(x);
+    x.then(
+      n => {
+        console.log(n);
+
+        const y = this.qSvc.getMagicNumberPromise(true);
+        console.log(y);
+
+        y.then(n => console.log(n));
+      }
+    ) 
+    .catch(error => console.error(error))
   }
 }

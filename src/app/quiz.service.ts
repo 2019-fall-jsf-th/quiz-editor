@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { resolve } from 'url';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +18,13 @@ export class QuizService {
     //   , { name: "Quiz 2", questionCount: 0 }
     //   , { name: "Quiz 3", questionCount: 25 }
     // ];
+  }
+
+  getMagicNumberPromise(makeThisPromiseSucced: boolean): Promise<number> {
+    let p = new Promise<number>(
+      (resolve, reject) => makeThisPromiseSucced ? resolve(42) : reject("failed!")
+    );
+
+    return p;
   }
 }
