@@ -109,4 +109,20 @@ export class AppComponent implements OnInit {
     ) 
     .catch(error => console.error(error))
   }
+
+  async jsPromisesTwo() {
+
+    try {
+      const x = await this.qSvc.getMagicNumberPromise(true);
+      console.log(x);
+
+      const y = await this.qSvc.getMagicNumberPromise(false);
+      console.log(y);
+    } catch(error) {
+      console.error(error);
+    }
+    
+  }
+
+
 }
