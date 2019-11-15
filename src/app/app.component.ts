@@ -124,4 +124,22 @@ export class AppComponent implements OnInit {
     }
 
   }
+
+  async jsPromisesThree() {
+
+    try {
+      const x = this.qSvc.getMagicNumberPromise(true);
+      console.log(x);
+  
+      const y = this.qSvc.getMagicNumberPromise(true);
+      console.log(y);
+
+      const results = await Promise.race([x, y]);
+      console.log(results);
+    }
+    catch(err) {
+      console.error(err);
+    }
+
+  }
 }
