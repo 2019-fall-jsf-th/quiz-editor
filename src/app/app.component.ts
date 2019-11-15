@@ -114,7 +114,6 @@ export class AppComponent implements OnInit {
         y.then(n => console.log(n)).catch(err => console.error(err));
       }
     )
-
     .catch(err => console.error(err))
   }
 
@@ -136,4 +135,28 @@ export class AppComponent implements OnInit {
     
   }
 
+  // if no await, get ZoneAwarePromise
+  async jsPromisesThree() {
+    try {
+      const x = this.qSvc.getMagicNumberPromise(true);
+      console.log(x); // ??? will get 42 if true, uncaught error if false if not in try/catch block
+  
+      const y = this.qSvc.getMagicNumberPromise(true);
+      console.log(y); // ??? will get 42 if true, will get error message if false
+
+      // make 2 calls, then await until all the calls are finished
+      const results = await Promise.all([x, y]);
+      console.log(results); // ??? come back as an array with 2 numbers, if one fails, then we get a console.error and no results
+
+      // get the first one that finishes and display it
+      // const results1 = await Promise.race([x, y]);
+      // console.log(results1); // ??? 
+    }
+
+    catch(err) {
+      console.error(err);
+    }
+    
+  }
+  
 }
