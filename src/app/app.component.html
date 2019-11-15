@@ -40,11 +40,13 @@
       </button>
       
       <div class="list-group mb-3">
+        <!-- line through quiz name if it is marked for delete -->
         <button 
           class="list-group-item d-flex justify-content-between align-items-center"
           *ngFor="let q of quizzes"
           (click)="selectQuiz(q)"
           [class.active]="q == selectedQuiz"
+          [style.text-decoration]="q.markedForDelete ? 'line-through' : 'inherit'"
         >
           {{ q.name }}
           <!-- make it text red if q.questionCount is zero, and make text white if selected,
@@ -146,6 +148,7 @@
           <div class="card-header">
             Other
           </div>
+          <!-- Mark quizzes for deletion -> bidirectional binding - state of our app  -->
           <div class="card-body">
             <div class="form-check">
               <input 
@@ -154,8 +157,13 @@
                 id="defaultCheck1"
                 [(ngModel)]="selectedQuiz.markedForDelete"
               >
-              <label class="form-check-label" for="defaultCheck1">
-                Mark for delete
+              <!-- Make text red if marking quiz for deletion -->
+              <label 
+                class="form-check-label" 
+                for="defaultCheck1"
+                [class.text-danger]="selectedQuiz.markedForDelete"
+              >
+                Marked for delete
               </label>
             </div>
           </div>
