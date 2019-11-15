@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizService } from './quiz.service';
+import { async } from 'q';
 
 interface QuizDisplay {
   name: string;
@@ -102,9 +103,25 @@ export class AppComponent implements OnInit {
         console.log(y);
 
         y.then( n => { console.log(n); } )
-        .catch(err => console.log(err))
+        .catch(err => console.error(err))
       }
     )
-    .catch(err => console.log(err))
+    .catch(err => console.error(err))
+
+  }
+  
+  async jsPromisesTwo() {
+
+    try {
+      const x = await this.qSvc.getMagicNumberPromise(true);
+      console.log(x);
+  
+      const y = await this.qSvc.getMagicNumberPromise(false);
+      console.log(y);
+    }
+    catch(err) {
+      console.error(err);
+    }
+
   }
 }
