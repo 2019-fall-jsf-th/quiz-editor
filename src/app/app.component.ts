@@ -94,5 +94,6 @@ export class AppComponent implements OnInit {
   removeQuestion(question) {
     console.log('hey I\'m workin here');
     this.selectedQuiz.quizQuestions = this.selectedQuiz.quizQuestions.filter(x => x !== question);
+    this.selectedQuiz.temporaryQuestionCount -= 1;
   }
 }
