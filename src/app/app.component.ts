@@ -90,4 +90,30 @@ export class AppComponent implements OnInit {
     console.log(`question: ${question}`);
     this.selectedQuiz.questions = this.selectedQuiz.questions.filter( (q, index) => q !== question );
   }
+
+  jsPromiseOne() {
+    let x = this.qSvc.getMagicNumberPromise(true);
+    console.log(x);
+
+    x.then(
+      n => {
+        console.log(n);
+      }
+    ).finally(
+      e => console.log(e)
+    );
+
+    x = this.qSvc.getMagicNumberPromise(false);
+    console.log(x);
+
+    x.then(
+      n => {
+        console.log(n);
+      }
+    ).catch(
+      e => console.error(e)
+    ).finally(
+      () => console.log("then this, finally")
+    );
+  }
 }
