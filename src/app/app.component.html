@@ -40,7 +40,7 @@
           *ngFor="let q of quizzes"
           (click)="selectQuiz(q)"
           [class.active]="q == selectedQuiz"
-          [style.text-decoration]="q.markedForDelete ? 'line-through' : 'inherit'"
+          [style.text-decoration]="q.markedForDelete ? 'line-through red' : 'inherit'"
         >
           {{ q.name }}
           <small
