@@ -74,6 +74,12 @@
     >
       <button class="btn btn-outline-dark mb-3">
         Save Quizzes
+        <span
+          *ngIf="deletedQuizCount > 0"
+          class='badge bg-danger text-white'
+        >
+          -{{ deletedQuizCount }}
+        </span>
       </button>
       <button class="btn btn-link mb-3">
         Cancel
