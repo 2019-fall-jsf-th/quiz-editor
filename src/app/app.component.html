@@ -76,6 +76,7 @@
         class="btn mb-3"
         [class.btn-dark]="deletedQuizCount + newlyAddedQuizCount + editedQuizCount > 0"
         [class.btn-outline-dark]="deletedQuizCount + newlyAddedQuizCount + editedQuizCount == 0"
+        (click)="saveBatchEdits()"
       >
         Save Quizzes
         <span

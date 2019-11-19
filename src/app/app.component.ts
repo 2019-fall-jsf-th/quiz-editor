@@ -191,4 +191,17 @@ export class AppComponent implements OnInit {
       && !x.markedForDelete
     );
   }
+
+  saveBatchEdits() {
+    this.qSvc.saveQuizzes(
+      this.getEditedQuizzes()
+      , this.getNewlyAddedQuizzes().map(x => ({ 
+        quizName: x.name
+        , quizQuestions: x.questions.map(y => y.name)
+      }))
+    ).subscribe(
+      data => console.log('Changed quizzes saved: ' + data)
+      , error => console.error(error)
+    );
+  }
 }
