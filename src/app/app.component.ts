@@ -5,6 +5,7 @@ interface QuizDisplay {
   name: string;
   questions: QuestionDisplay[];
   markedForDelete: boolean;
+  quizRating: Number;
 }
 
 interface QuestionDisplay {
@@ -18,7 +19,7 @@ interface QuestionDisplay {
 })
 export class AppComponent implements OnInit {
   title = 'quiz-editor';
-  currentRate= .5;
+  
 
   //propName = 'Purple';
   private random = Math.random();
@@ -49,6 +50,7 @@ export class AppComponent implements OnInit {
             name: x.name
             , questions: x.questions
             , markedForDelete: false
+            , quizRating: 0
           }));
         }
         , error => {
@@ -65,6 +67,7 @@ export class AppComponent implements OnInit {
   selectQuiz(q) {
     this.selectedQuiz = q;
     console.log(this.selectedQuiz.name);
+    console.log(this.selectedQuiz.quizRating);
   }
 
   addNewQuiz() {
@@ -73,6 +76,7 @@ export class AppComponent implements OnInit {
       name: 'Untitled Quiz'
       , questions: []
       , markedForDelete: false
+      , quizRating: 0
     };
 
     this.quizzes = [
