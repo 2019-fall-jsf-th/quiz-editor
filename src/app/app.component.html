@@ -153,6 +153,11 @@
            <ngb-rating [(rate)]="selectedQuiz.quizRating"></ngb-rating>
             <div>
               Rate: {{selectedQuiz.quizRating}}
+              <button
+              (click)="clearRating()"
+              >
+              Clear Rating
+            </button>
             </div>
           </div>
         </div>

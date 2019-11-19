@@ -152,4 +152,8 @@ export class AppComponent implements OnInit {
       console.error(err);
     }
   }
+
+  clearRating() {
+    this.selectedQuiz.quizRating = 0;
+  }
 }
