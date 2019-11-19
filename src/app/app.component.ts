@@ -71,7 +71,7 @@ export class AppComponent implements OnInit {
   }
 
   generateQuizChecksum(quiz: QuizDisplay) {
-    return quiz.name + quiz.questions.map(y => '~' + y.name).join()
+    return quiz.name + quiz.questions.map(y => '~' + y.name).join('')
   }
 
   selectedQuiz = undefined;
