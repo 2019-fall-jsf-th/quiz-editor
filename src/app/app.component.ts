@@ -18,6 +18,7 @@ interface QuestionDisplay {
 })
 export class AppComponent implements OnInit {
   title = 'quiz-editor';
+  currentRate= .5;
 
   //propName = 'Purple';
   private random = Math.random();
