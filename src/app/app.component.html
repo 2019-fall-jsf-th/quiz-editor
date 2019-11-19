@@ -158,7 +158,9 @@
             <p
               *ngIf="selected <= 3"
             >
-              <ngb-alert type="custom" [dismissible]="false"><strong>Maybe delete this quiz?</strong></ngb-alert>
+            <ngb-alert [dismissible]="false">
+              <strong>Maybe delete this quiz?</strong>.
+            </ngb-alert>
             </p>
             <button class="btn btn-sm btn-outline-{{readonly ? 'danger' : 'success'}}" (click)="readonly = !readonly">
               {{ readonly ? "readonly" : "editable"}}
