@@ -72,19 +72,29 @@
       class="col-md-8"
       *ngIf="selectedQuiz != undefined"
     >
-      <button class="btn btn-outline-dark mb-3">
+      <button 
+        class="btn mb-3"
+        [class.btn-dark]="deletedQuizCount + newlyAddedQuizCount + editedQuizCount > 0"
+        [class.btn-outline-dark]="deletedQuizCount + newlyAddedQuizCount + editedQuizCount == 0"
+      >
         Save Quizzes
         <span
           *ngIf="deletedQuizCount > 0"
-          class='badge bg-danger text-white ml-1'
+          class='badge badge-danger ml-1'
         >
           -{{ deletedQuizCount }}
         </span>
         <span
           *ngIf="newlyAddedQuizCount > 0"
-          class='badge bg-success text-white ml-1'
+          class='badge badge-success ml-1'
         >
           +{{ newlyAddedQuizCount }}
+        </span>
+        <span
+          *ngIf="editedQuizCount > 0"
+          class='badge badge-light ml-1'
+        >
+          *{{ editedQuizCount }}
         </span>
       </button>
       <button class="btn btn-link mb-3">

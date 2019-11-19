@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizService } from './quiz.service';
+import { join } from 'path';
 
 interface QuizDisplay {
   name: string;
   questions: QuestionDisplay[];
   markedForDelete: boolean;
   newlyAddedQuiz: boolean;
+  naiveQuizChecksum: string;
 }
 
 interface QuestionDisplay {
@@ -50,6 +52,7 @@ export class AppComponent implements OnInit {
             , questions: x.questions
             , markedForDelete: false
             , newlyAddedQuiz: false
+            , naiveQuizChecksum: this.generateQuizChecksum(x)
           }));
         }
         , error => {
@@ -61,6 +64,10 @@ export class AppComponent implements OnInit {
     console.log(this.quizzes);
   }
 
+  generateQuizChecksum(quiz: QuizDisplay) {
+    return quiz.name + quiz.questions.map(y => '~' + y.name).join()
+  }
+
   selectedQuiz = undefined;
 
   selectQuiz(q) {
@@ -70,11 +77,12 @@ export class AppComponent implements OnInit {
 
   addNewQuiz() {
 
-    const newQuiz = { 
+    let newQuiz = { 
       name: 'Untitled Quiz'
       , questions: []
       , markedForDelete: false
       , newlyAddedQuiz: true
+      , naiveQuizChecksum:  "" // Isn't needed ? ? ?
     };
 
     this.quizzes = [
@@ -165,5 +173,17 @@ export class AppComponent implements OnInit {
 
   getNewlyAddedQuizzes() {
     return this.quizzes.filter(x => x.newlyAddedQuiz && !x.markedForDelete);
+  }
+
+  get editedQuizCount() {
+    return this.getEditedQuizzes().length;
+  }
+
+  getEditedQuizzes() {
+    return this.quizzes.filter(x =>  
+      this.generateQuizChecksum(x) != x.naiveQuizChecksum
+      && !x.newlyAddedQuiz 
+      && !x.markedForDelete
+    );
   }
 }
