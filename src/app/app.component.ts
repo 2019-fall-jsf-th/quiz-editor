@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizService } from './quiz.service';
-import { join } from 'path';
 
 interface QuizDisplay {
   name: string;
