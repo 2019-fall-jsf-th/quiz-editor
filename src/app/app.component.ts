@@ -31,4 +31,19 @@ export class AppComponent {
     this.selectedQuiz = q;
     console.log(this.selectedQuiz.name);
   }
+
+  // Add a new quiz with no title and no questions
+  addNewQuiz() {
+
+    const newQuiz = { name: 'Untitled Quiz', questionCount: 0 };
+
+    // Add the new quiz to the end of the list
+    this.quizzes = [
+      ...this.quizzes
+      , newQuiz
+    ];
+
+    // Make the new quiz be the actively selected quiz
+    this.selectQuiz(newQuiz);
+  }
 }
