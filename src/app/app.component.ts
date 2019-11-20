@@ -11,6 +11,14 @@ interface QuestionDisplay {
   name: string;
 }
 
+@Component ({
+  selector: 'ngbd-collapse-basic',
+  templateUrl: './app.component.html'
+})
+export class NbgdCollapseBasic {
+  public isCollapsed = false;
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -147,4 +155,6 @@ export class AppComponent implements OnInit {
       console.error(err);
     }
   }
+
+
 }

@@ -91,38 +91,49 @@
         </div>
       </div>
       <div class="card mb-3">
-        <div class="card-header">
-          Questions
-          <span
-            *ngIf="selectedQuiz.questions.length == 0"
-            class="text-danger"
-          >
-            (No Questions)
-          </span>
-        </div>
-        <div class="card-body">
-          <button 
-          class="btn btn-outline-success mb-3"
-          (click)="addNewQuestion()"
+        <button 
+          type="button" 
+          class="btn btn-outline-primary" 
+          (click)="isCollapsed = !isCollapsed"
+          [attr.aria-expanded]="!isCollapsed" 
+          aria-controls="collapseExample"
         >
-          Add New Question
+          Show Questions
         </button>
-        <div
-          *ngFor="let question of this.selectedQuiz.questions"
-          class="form-row"
-        >
-          <input 
-            class="form-control col-md-10 mb-3"
-            type="text"
-            [(ngModel)]="question.name"
-          >
-          <button 
-            class="btn btn-link text-danger col-md-2 mb-3"
-            (click)="removeQuestion(question)"
-          >
-            Remove
-          </button>
-        </div>
+        <div id="collapseExample" [ngbCollapse]="isCollapsed">
+          <div class="card-header">
+            Questions
+            <span
+              *ngIf="selectedQuiz.questions.length == 0"
+              class="text-danger"
+            >
+              (No Questions)
+            </span>
+          </div>
+          <div class="card-body">
+            <button 
+              class="btn btn-outline-success mb-3"
+              (click)="addNewQuestion()"
+            >
+              Add New Question
+            </button>
+            <div
+              *ngFor="let question of this.selectedQuiz.questions"
+              class="form-row"
+            >
+              <input 
+                class="form-control col-md-10 mb-3"
+                type="text"
+                [(ngModel)]="question.name"
+              >
+              <button 
+                class="btn btn-link text-danger col-md-2 mb-3"
+                (click)="removeQuestion(question)"
+              >
+                Remove
+              </button>
+            </div>
+          </div>
         </div>
       </div>
         <div class="card">
