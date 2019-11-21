@@ -46,6 +46,7 @@ export class AppComponent implements OnInit {
 
   cancelBatchEdits() {
     this.loadQuizzes();
+    this.selectedQuiz = undefined;
   }
   selectedQuiz = undefined;
 
