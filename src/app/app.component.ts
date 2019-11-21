@@ -19,6 +19,8 @@ interface QuestionDisplay {
 export class AppComponent implements OnInit {
   title = 'quiz-editor';
 
+  currentRate = 0;
+
   //propName = 'Purple';
   private random = Math.random();
   propName = this.random > 0.5 ? 'Green' : 'Yellow';
@@ -147,4 +149,5 @@ export class AppComponent implements OnInit {
       console.error(err);
     }
   }
+
 }
