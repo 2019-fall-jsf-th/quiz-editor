@@ -91,17 +91,8 @@
         </div>
       </div>
       <div class="card mb-3">
-        <button 
-          type="button" 
-          class="btn btn-outline-primary" 
-          (click)="isCollapsed = !isCollapsed"
-          [attr.aria-expanded]="!isCollapsed" 
-          aria-controls="collapseExample"
-        >
-          Show Questions
-        </button>
-        <div id="collapseExample" [ngbCollapse]="isCollapsed">
-          <div class="card-header">
+        <div>
+          <div class="card-header clearfix">
             Questions
             <span
               *ngIf="selectedQuiz.questions.length == 0"
@@ -109,8 +100,17 @@
             >
               (No Questions)
             </span>
+            <button 
+              type="button" 
+              class="btn btn-sm btn-outline-primary float-right ml-2" 
+              (click)="isCollapsed = !isCollapsed"
+              [attr.aria-expanded]="!isCollapsed" 
+              aria-controls="collapseExample"
+            >
+          Show Questions
+        </button>
           </div>
-          <div class="card-body">
+          <div class="card-body" id="collapseExample" [ngbCollapse]="isCollapsed">
             <button 
               class="btn btn-outline-success mb-3"
               (click)="addNewQuestion()"

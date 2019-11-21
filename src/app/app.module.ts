@@ -15,7 +15,6 @@ import { AppComponent } from './app.component';
     BrowserModule
     , FormsModule
     , HttpClientModule
-    , Component
     , NgbModule
   ],
   providers: [],

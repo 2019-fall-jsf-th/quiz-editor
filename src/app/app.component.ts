@@ -11,12 +11,13 @@ interface QuestionDisplay {
   name: string;
 }
 
+//creating component for collapse widget
 @Component ({
   selector: 'ngbd-collapse-basic',
   templateUrl: './app.component.html'
 })
 export class NbgdCollapseBasic {
-  public isCollapsed = false;
+  public isCollapsed = true;
 }
 
 @Component({
