@@ -144,6 +144,16 @@
               >
                 Marked for Delete
               </label>
+              <div class="mt-3">
+                <h4 class="text-success">Rate this quiz:</h4>
+                <ngb-rating 
+                  max="5" 
+                  resettable="true" 
+                  [(rate)]="currentRate">
+                </ngb-rating>
+                <hr>
+                <pre>Rate: <b>{{currentRate}}</b></pre>
+              </div>
             </div>
           </div>
         </div>
