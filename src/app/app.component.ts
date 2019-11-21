@@ -77,5 +77,21 @@ export class AppComponent implements OnInit {
     ];
 
     this.selectQuiz(newQuiz);
+
+  }
+
+  // Add a new question
+  addNewQuestion() {
+
+    // Add the new question to the end of the array using spread
+    this.selectedQuiz.questions = [
+      ...this.selectedQuiz.questions,
+      { name: "New Question" }
+    ];
+
+  }
+
+  deleteQuestion(question) {
+    this.selectedQuiz.questions = this.selectedQuiz.questions.filter(x => x !== question);
   }
 }
