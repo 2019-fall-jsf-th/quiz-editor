@@ -16,6 +16,7 @@ interface QuestionDisplay {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent implements OnInit {
   title = 'quiz-editor';
 
@@ -38,28 +39,32 @@ export class AppComponent implements OnInit {
     
     //this.quizzes = [];
     
-    this.qSvc
-      .loadQuizzes()
-      .subscribe(
-        data => {
-          console.log(data);
-          console.log('woo hoo');
-          this.quizzes = (<any[]> data).map(x => ({
-            name: x.name
-            , questions: x.questions
-            , markedForDelete: false
-          }));
-        }
-        , error => {
-          console.error(error.error);
-          this.failedToLoadQuizzes = true;
-        }
-      )
+    this.loadQuizzes();
 
     console.log(this.quizzes);
   }
 
+  cancelBatchEdits() {
+    this.loadQuizzes();
+  }
   selectedQuiz = undefined;
+
+  private loadQuizzes() {
+    this.qSvc
+      .loadQuizzes()
+      .subscribe(data => {
+        console.log(data);
+        console.log('woo hoo');
+        this.quizzes = (<any[]>data).map(x => ({
+          name: x.name,
+          questions: x.questions,
+          markedForDelete: false
+        }));
+      }, error => {
+        console.error(error.error);
+        this.failedToLoadQuizzes = true;
+      });
+  }
 
   selectQuiz(q) {
     this.selectedQuiz = q;
@@ -67,7 +72,6 @@ export class AppComponent implements OnInit {
   }
 
   addNewQuiz() {
-
     const newQuiz = { 
       name: 'Untitled Quiz'
       , questions: []
@@ -115,7 +119,6 @@ export class AppComponent implements OnInit {
   }
 
   async jsPromisesTwo() {
-
     try {
       const x = await this.qSvc.getMagicNumberPromise(true);
       console.log(x); // ? ? ? 
@@ -130,7 +133,6 @@ export class AppComponent implements OnInit {
   }
 
   async jsPromisesThree() {
-
     try {
       const x = this.qSvc.getMagicNumberPromise(true);
       console.log(x); // ? ? ? 
@@ -147,4 +149,5 @@ export class AppComponent implements OnInit {
       console.error(err);
     }
   }
+
 }
