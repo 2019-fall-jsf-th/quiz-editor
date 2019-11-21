@@ -144,30 +144,37 @@
           </div>
         </div>
       </div>
-        <div class="card">
-          <div class="card-header">
-            Other
-          </div>
-          <!-- Mark quizzes for deletion -> bidirectional binding - state of our app  -->
-          <div class="card-body">
-            <div class="form-check">
-              <input 
-                class="form-check-input" 
-                type="checkbox" value="" 
-                id="defaultCheck1"
-                [(ngModel)]="selectedQuiz.markedForDelete"
-              >
-              <!-- Make text red if marking quiz for deletion -->
-              <label 
-                class="form-check-label" 
-                for="defaultCheck1"
-                [class.text-danger]="selectedQuiz.markedForDelete"
-              >
-                Marked for delete
-              </label>
+      <ngb-accordion>
+        <ngb-panel title="Other">
+          <div class="card">
+            <div class="card-header" >
+              Other
             </div>
+            <!-- Mark quizzes for deletion -> bidirectional binding - state of our app  -->
+            <ng-template ngbPanelContent>
+              <div class="card-body">
+                <div class="form-check">
+                  <input 
+                    class="form-check-input" 
+                    type="checkbox" value="" 
+                    id="defaultCheck1"
+                    [(ngModel)]="selectedQuiz.markedForDelete"
+                  >
+                  <!-- Make text red if marking quiz for deletion -->
+                  <label 
+                    class="form-check-label" 
+                    for="defaultCheck1"
+                    [class.text-danger]="selectedQuiz.markedForDelete"
+                  >
+                    Marked for delete
+                  </label>
+                </div>
+              </div>
+            </ng-template>
           </div>
-        </div>
+        </ngb-panel>
+      </ngb-accordion>
+        
       </div>
   </div>
 </div>
