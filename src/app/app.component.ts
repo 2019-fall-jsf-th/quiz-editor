@@ -17,7 +17,7 @@ interface QuestionDisplay {
   templateUrl: './app.component.html'
 })
 export class NbgdCollapseBasic {
-  public isCollapsed = true;
+  public isCollapsed = false;
 }
 
 @Component({

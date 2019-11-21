@@ -105,12 +105,12 @@
               class="btn btn-sm btn-outline-primary float-right ml-2" 
               (click)="isCollapsed = !isCollapsed"
               [attr.aria-expanded]="!isCollapsed" 
-              aria-controls="collapseExample"
+              aria-controls="collapseQuestions"
             >
           Show Questions
         </button>
           </div>
-          <div class="card-body" id="collapseExample" [ngbCollapse]="isCollapsed">
+          <div class="card-body" id="collapseQuestions" [ngbCollapse]="!isCollapsed">
             <button 
               class="btn btn-outline-success mb-3"
               (click)="addNewQuestion()"
