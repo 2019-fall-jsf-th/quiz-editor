@@ -74,7 +74,20 @@
     >
       <button class="btn btn-outline-dark mb-3">
         Save Quizzes
+      <span
+        class="badge badge-danger ml-1"
+        *ngIf="numberOfDeletedQuizzes > 0"
+      >
+        -{{ numberOfDeletedQuizzes }}
+      </span>
+      <span
+        class="badge badge-success ml-1"
+        *ngIf="numberOfAddedQuizzes > 0"
+      >
+        +{{ numberOfAddedQuizzes }}
+      </span>      
       </button>
+      
       <button 
         class="btn btn-link mb-3"
         (click)="cancelBatchEdits()"  

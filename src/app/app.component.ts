@@ -5,6 +5,7 @@ interface QuizDisplay {
   name: string;
   questions: QuestionDisplay[];
   markedForDelete: boolean;
+  newlyAddedQuiz: boolean;
 }
 
 interface QuestionDisplay {
@@ -60,7 +61,8 @@ export class AppComponent implements OnInit {
         this.quizzes = (<any[]>data).map(x => ({
           name: x.name,
           questions: x.questions,
-          markedForDelete: false
+          markedForDelete: false,
+          newlyAddedQuiz: false
         }));
       }, error => {
         console.error(error.error);
@@ -79,6 +81,7 @@ export class AppComponent implements OnInit {
       name: 'Untitled Quiz'
       , questions: []
       , markedForDelete: false
+      , newlyAddedQuiz: true
     };
 
     this.quizzes = [
@@ -153,6 +156,22 @@ export class AppComponent implements OnInit {
     catch(err) {
       console.error(err);
     }
+  }
+
+  get numberOfDeletedQuizzes() {
+    return this.getDeletedQuizzes().length;
+  }
+
+  getDeletedQuizzes() {
+    return this.quizzes.filter(x => x.markedForDelete);
+  }
+
+  get numberOfAddedQuizzes() {
+    return this.getAddedQuizzes().length;
+  }
+
+  getAddedQuizzes() {
+    return this.quizzes.filter(x => x.newlyAddedQuiz);
   }
 
 
