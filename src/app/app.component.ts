@@ -188,5 +188,16 @@ export class AppComponent implements OnInit {
         && !x.markedForDelete
       );
   }
+
+  saveBatchEdits() {
+    this.qSvc.saveQuizzes(
+      this.getEditedQuizzes(),
+      []
+    )
+    .subscribe(
+      data => console.log('Number of edited quizzes submitted: ' + data)
+      , err => console.log(err)
+    );
+  }
   
 }
