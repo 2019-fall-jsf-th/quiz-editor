@@ -88,7 +88,8 @@
       <!-- comment to add  -->
       <button 
         class="btn btn-outline-dark mb-3"
-
+        [class.btn-outline-dark]="numberOfDeletedQuizzes + numberOfAddedQuizzes + numberOfEditedQuizzes == 0"
+        [class.btn-dark]="numberOfDeletedQuizzes + numberOfAddedQuizzes + numberOfEditedQuizzes > 0"
       >
         Save Quizzes
         <!-- shows badges if quizzes are marked for delete -->
