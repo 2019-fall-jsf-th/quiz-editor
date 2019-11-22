@@ -42,29 +42,36 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     //this.quizzes = [];
 
-    this.qSvc
-      .loadQuizzes()
-      // make a call to a webservice
-      .subscribe( 
-        data => {
-          console.log(data);
-          console.log('woohoo');
-          this.quizzes = (<any[]> data).map(x => ({
-            name: x.name
-            , questions: x.questions
-            , markedForDelete: false
-          }));
-        }
-        , error => {
-          console.error(error.error);
-          this.failedToLoadQuizzes = true;
-        }
-          
-      )
+    // this has been refactored - compresses code and makes it into a method
+    this.loadQuizzes();
     console.log(this.quizzes);
   }
 
+  // When we hit cancel, we will just call loadQuizzes again
+  cancelBatchEdits() {
+    this.loadQuizzes();
+    this.selectedQuiz  = undefined; // makes it so no quizzes are selected
+  }
   selectedQuiz = undefined;
+
+  // refactored code
+  private loadQuizzes() {
+    this.qSvc
+      // make an asynchronous call to a webservice
+      .loadQuizzes()
+      .subscribe(data => {
+        console.log(data);
+        console.log('woohoo');
+        this.quizzes = (<any[]>data).map(x => ({
+          name: x.name,
+          questions: x.questions,
+          markedForDelete: false
+        }));
+      }, error => {
+        console.error(error.error);
+        this.failedToLoadQuizzes = true;
+      });
+  }
 
   selectQuiz(q) {
     this.selectedQuiz = q;
