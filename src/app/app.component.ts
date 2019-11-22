@@ -38,28 +38,33 @@ export class AppComponent implements OnInit {
     
     //this.quizzes = [];
     
-    this.qSvc
-      .loadQuizzes()
-      .subscribe(
-        data => {
-          console.log(data);
-          console.log('woo hoo');
-          this.quizzes = (<any[]> data).map(x => ({
-            name: x.name
-            , questions: x.questions
-            , markedForDelete: false
-          }));
-        }
-        , error => {
-          console.error(error.error);
-          this.failedToLoadQuizzes = true;
-        }
-      )
+    this.loadQuizzes();
 
     console.log(this.quizzes);
   }
 
+  cancelBatchEdits() {
+    this.loadQuizzes();
+    this.selectedQuiz = undefined;
+  }
   selectedQuiz = undefined;
+
+  private loadQuizzes() {
+    this.qSvc
+      .loadQuizzes()
+      .subscribe(data => {
+        console.log(data);
+        console.log('woo hoo');
+        this.quizzes = (<any[]>data).map(x => ({
+          name: x.name,
+          questions: x.questions,
+          markedForDelete: false
+        }));
+      }, error => {
+        console.error(error.error);
+        this.failedToLoadQuizzes = true;
+      });
+  }
 
   selectQuiz(q) {
     this.selectedQuiz = q;
