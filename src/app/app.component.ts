@@ -78,8 +78,9 @@ export class AppComponent implements OnInit {
   }
 
   // map over all of my objects???
+  // used for comparison to original(saved?) quizzes and any changes you may make
   generateNaiveQuizChecksum(q: QuizDisplay) {
-    return q.name + q.questions.map(x => '~' + x.name).join('');
+    return q.name + q.questions.length + q.questions.map(x => '~' + x.name).join('');
   }
 
   selectQuiz(q) {
