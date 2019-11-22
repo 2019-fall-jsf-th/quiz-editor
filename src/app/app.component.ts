@@ -182,6 +182,7 @@ export class AppComponent implements OnInit {
     return this.getEditedQuizzes().length;
   }
 
+  // if the newly added quiz is not the default added naivequizchecksum, not a newly added quiz, and not a quiz marked for delete, return the quiz
   getEditedQuizzes() {
     return this.quizzes
       .filter(x => this.generateNaiveQuizChecksum(x) != x.naiveQuizChecksum 
