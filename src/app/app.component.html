@@ -78,10 +78,16 @@
       >
         Save Quizzes
         <span
-          class="badge badge-danger m1-1"
+          class="badge badge-danger ml-1"
           *ngIf="numberOfDeletedQuizzes > 0"
         >
           -{{ numberOfDeletedQuizzes }}
+        </span>
+        <span
+          class="badge badge-success ml-1"
+          *ngIf="numberOfAddedQuizzes > 0"
+        >
+          +{{ numberOfAddedQuizzes }}
         </span>
       </button>
       <button 
