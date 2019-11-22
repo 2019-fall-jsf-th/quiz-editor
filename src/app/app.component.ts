@@ -190,4 +190,16 @@ export class AppComponent implements OnInit {
         && !x.markedForDelete
       );
   }
+
+  saveBatchEdits() {
+    this.qSvc.saveQuizzes(
+        this.getEditedQuizzes()
+      , []
+    )
+    // this is an observable masking a promise
+    .subscribe(
+      data => console.log('Number of edited quizzes submitted: ' + data)
+      , err => console.error(err)
+    );
+  }
 }
