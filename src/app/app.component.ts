@@ -46,6 +46,7 @@ export class AppComponent implements OnInit {
   //this method will remove any edits by reloading all the quizzes
   cancelBatchEdits() {
     this.loadQuizzes();
+    this.selectedQuiz = undefined;
   }
 
   selectedQuiz = undefined;
