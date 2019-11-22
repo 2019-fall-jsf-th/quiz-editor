@@ -6,6 +6,7 @@ interface QuizDisplay {
   questions: QuestionDisplay[];
   markedForDelete: boolean;
   newlyAddedQuiz: boolean;
+  naiveQuizChecksum: string;
 }
 
 interface QuestionDisplay {
@@ -38,30 +39,39 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     
     //this.quizzes = [];
-    
-    this.qSvc
-      .loadQuizzes()
-      .subscribe(
-        data => {
-          console.log(data);
-          console.log('woo hoo');
-          this.quizzes = (<any[]> data).map(x => ({
-            name: x.name
-            , questions: x.questions
-            , markedForDelete: false
-            , newlyAddedQuiz: false
-          }));
-        }
-        , error => {
-          console.error(error.error);
-          this.failedToLoadQuizzes = true;
-        }
-      )
-
+    this.loadQuizzes();
     console.log(this.quizzes);
   }
 
+  cancelBatchEdits() {
+    this.loadQuizzes();
+    this.selectedQuiz = undefined;
+  }
+
   selectedQuiz = undefined;
+
+  private loadQuizzes() {
+    this.qSvc
+      .loadQuizzes()
+      .subscribe(data => {
+        console.log(data);
+        console.log('woo hoo');
+        this.quizzes = (<any[]>data).map(x => ({
+          name: x.name,
+          questions: x.questions,
+          markedForDelete: false,
+          newlyAddedQuiz: false,
+          naiveQuizChecksum: this.generateNaiveQuizChecksum(x)
+        }));
+      }, error => {
+        console.error(error.error);
+        this.failedToLoadQuizzes = true;
+      });
+  }
+
+  generateNaiveQuizChecksum(q: QuizDisplay) {
+    return q.name + q.questions.length + q.questions.map(x => '~' + x.name).join('');
+  }
 
   selectQuiz(q) {
     this.selectedQuiz = q;
@@ -75,6 +85,7 @@ export class AppComponent implements OnInit {
       , questions: []
       , markedForDelete: false
       , newlyAddedQuiz: true
+      , naiveQuizChecksum: ""
     };
 
     this.quizzes = [
@@ -165,5 +176,17 @@ export class AppComponent implements OnInit {
 
   getAddedQuizzes() {
     return this.quizzes.filter(x => x.newlyAddedQuiz && !x.markedForDelete);
+  }
+
+  get numberOfEditedQuizzes() {
+    return this.getEditedQuizzes().length;
+  }
+
+  getEditedQuizzes() {
+    return this.quizzes
+      .filter(x => this.generateNaiveQuizChecksum(x) != x.naiveQuizChecksum 
+        && !x.newlyAddedQuiz 
+        && !x.markedForDelete
+      );
   }
 }
