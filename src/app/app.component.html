@@ -97,7 +97,10 @@
           *{{ numberOfEditedQuizzes }}
         </span>
       </button>
-      <button class="btn btn-link mb-3">
+      <button 
+        class="btn btn-link mb-3"
+        (click)="cancelBatchEdits()"  
+      >
         Cancel
       </button>
       <div class="card mb-3">
