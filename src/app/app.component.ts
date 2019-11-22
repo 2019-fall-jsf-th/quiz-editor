@@ -7,6 +7,7 @@ interface QuizDisplay {
   name: string;
   questions: DisplayedQuestion[];
   markedForDelete: boolean;
+  newlyAddedQuiz: boolean; // added so we can keep track of new quizzes we are adding
 }
 
 interface DisplayedQuestion {
@@ -65,7 +66,8 @@ export class AppComponent implements OnInit {
         this.quizzes = (<any[]>data).map(x => ({
           name: x.name,
           questions: x.questions,
-          markedForDelete: false
+          markedForDelete: false,
+          newlyAddedQuiz: false
         }));
       }, error => {
         console.error(error.error);
@@ -84,6 +86,7 @@ export class AppComponent implements OnInit {
       name: 'Untitled Quiz'
       , questions: []
       , markedForDelete: false
+      , newlyAddedQuiz: true
     };
 
     this.quizzes = [
@@ -178,5 +181,16 @@ export class AppComponent implements OnInit {
   getDeletedQuizzes() {
     return this.quizzes.filter(x => x.markedForDelete);
   }
+  
+  // gets the count of added quizzes - TS getter property
+  get numberOfAddedQuizzes() {
+    return this.getAddedQuizzes().length;
+  }
+
+  // give me quizzes that are newly added and not marked for delete
+  getAddedQuizzes() {
+    return this.quizzes.filter(x => x.newlyAddedQuiz && !x.markedForDelete);
+  }
+
   
 }

@@ -80,22 +80,30 @@
       </div>
     </div>
     
-    <!-- Quiz selected -->
+    <!-- If quiz is selected -->
     <div 
       class="col-md-8"
       *ngIf="selectedQuiz != undefined"
     >
+      <!-- comment to add  -->
       <button 
         class="btn btn-outline-dark mb-3"
 
       >
         Save Quizzes
-        <!-- shows badges if quizzes are changed in any way -->
+        <!-- shows badges if quizzes are marked for delete -->
         <span
           class="badge badge-danger ml-1"
           *ngIf="numberOfDeletedQuizzes > 0"
         >
           -{{ numberOfDeletedQuizzes }}
+        </span>
+        <!-- shows badge if quizzes are added  -->
+        <span
+          class="badge badge-success ml-1"
+          *ngIf="numberOfAddedQuizzes > 0"
+        >
+          +{{ numberOfAddedQuizzes }}
         </span>
       </button>
       <button 
