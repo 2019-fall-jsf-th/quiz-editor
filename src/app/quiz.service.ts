@@ -19,6 +19,32 @@ export class QuizService {
     // ];
   }
 
+  // method that we'll use to push data back to the cloud
+  saveQuizzes(changedQuizzes: any[], newQuizzes: any[] = []) {
+
+    // set up headers to secure endpoint, token calls the endpoint
+    let h = new HttpHeaders({
+      'Content-Type': 'application/json'
+      , 'X-Sas-Token': 'sig=K2WE6NQPtyoV6ke5hwPEaEaW52fgvyFWUeCEdPJls1s'
+    });
+
+    //console.log(h);
+
+    return this.builtInAngularHttpClient.post(
+      'https://modern-js.azurewebsites.net/save-quizzes-proxy'
+      , JSON.stringify(
+        {
+          "changedQuizzes": changedQuizzes
+          , "newQuizzes": newQuizzes
+        }
+      )
+      , {
+        headers: h
+      }
+    );
+  }
+  
+
   // pass true if you want it to succeed, pass fail if you want it to fail
   getMagicNumberPromise(makeThisPromiseSucceed: boolean): Promise<number> {
     let p = new Promise<number>(
