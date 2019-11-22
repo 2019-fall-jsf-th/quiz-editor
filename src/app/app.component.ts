@@ -169,5 +169,14 @@ export class AppComponent implements OnInit {
     }
     
   }
+
+  // gets the count of deleted quizzes - TS getter property
+  get numberOfDeletedQuizzes() {
+    return this.getDeletedQuizzes().length;
+  }
+
+  getDeletedQuizzes() {
+    return this.quizzes.filter(x => x.markedForDelete);
+  }
   
 }
