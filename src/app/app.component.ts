@@ -8,6 +8,7 @@ interface QuizDisplay {
   questions: DisplayedQuestion[];
   markedForDelete: boolean;
   newlyAddedQuiz: boolean; // added so we can keep track of new quizzes we are adding
+  naiveQuizChecksum: string; // for editing quiz behavior
 }
 
 interface DisplayedQuestion {
@@ -67,12 +68,18 @@ export class AppComponent implements OnInit {
           name: x.name,
           questions: x.questions,
           markedForDelete: false,
-          newlyAddedQuiz: false
+          newlyAddedQuiz: false,
+          naiveQuizChecksum: this.generateNaiveQuizChecksum(x),
         }));
       }, error => {
         console.error(error.error);
         this.failedToLoadQuizzes = true;
       });
+  }
+
+  // map over all of my objects???
+  generateNaiveQuizChecksum(q: QuizDisplay) {
+    return q.name + q.questions.map(x => '~' + x.name).join('');
   }
 
   selectQuiz(q) {
@@ -87,6 +94,7 @@ export class AppComponent implements OnInit {
       , questions: []
       , markedForDelete: false
       , newlyAddedQuiz: true
+      , naiveQuizChecksum: ""
     };
 
     this.quizzes = [
@@ -192,5 +200,18 @@ export class AppComponent implements OnInit {
     return this.quizzes.filter(x => x.newlyAddedQuiz && !x.markedForDelete);
   }
 
+  // gets the count of edited quizzes - TS getter property
+  get numberOfEditedQuizzes() {
+    return this.getEditedQuizzes().length;
+  }
+
+  // give me quizzes that are edited, not newly added, and not marked for delete
+  getEditedQuizzes() {
+    return this.quizzes
+      .filter(x => this.generateNaiveQuizChecksum(x) != x.naiveQuizChecksum
+        && !x.newlyAddedQuiz
+        && !x.markedForDelete
+      );
+  }
   
 }

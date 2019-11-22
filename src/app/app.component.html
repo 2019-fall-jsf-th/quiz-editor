@@ -105,6 +105,13 @@
         >
           +{{ numberOfAddedQuizzes }}
         </span>
+        <!-- shows badge if quizzes are edited  -->
+        <span
+          class="badge badge-light ml-1"
+          *ngIf="numberOfEditedQuizzes > 0"
+        >
+          *{{ numberOfEditedQuizzes }}
+        </span>
       </button>
       <button 
         class="btn btn-link mb-3"
@@ -165,6 +172,8 @@
           </div>
         </div>
       </div>
+      
+      <!-- add collapse functionality from ng-bootstrap  -->
       <ngb-accordion>
         <ngb-panel title="Other">
           <div class="card">
