@@ -84,9 +84,15 @@
         class="badge badge-success ml-1"
         *ngIf="numberOfAddedQuizzes > 0"
       >
-      +{{ numberOfAddedQuizzes }}
-    </span>
-      </button>
+        +{{ numberOfAddedQuizzes }}
+      </span>
+      <span
+            class="badge badge-light ml-1"
+            *ngIf="numberOfEditedQuizzes > 0"
+          >
+          *{{ numberOfEditedQuizzes }}
+      </span>
+        </button>
       <button 
         class="btn btn-link mb-3"
         (click)="cancelBatchEdits()"
