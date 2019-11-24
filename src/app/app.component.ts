@@ -190,10 +190,19 @@ export class AppComponent implements OnInit {
       );
   }
 
+  mappedQuizQuestions() {
+    return this.getAddedQuizzes().map(x => ({
+      questions: x.questions.map(y => y.name)
+    }))
+  }
+
   saveBatchEdits() {
     this.qSvc.saveQuizzes(
-      this.getEditedQuizzes()
-      , []
+      this.getEditedQuizzes(),
+      this.getAddedQuizzes().map( x => ({
+        quizNameSave: x.name,
+        quizQuestionsSave: this.mappedQuizQuestions()
+      }))
     )
     .subscribe(
       data => console.log('Number of edited quizzes submitted: ' + data)
