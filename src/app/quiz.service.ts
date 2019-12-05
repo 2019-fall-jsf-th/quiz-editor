@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,7 @@ export class QuizService {
       , JSON.stringify(
         {
           "changedQuizzes": changedQuizzes
-          , "newQuizzes": newQuizzes
+          , "newQuizzes": [{name: name, questions:[]}]
         }
       )
       , {

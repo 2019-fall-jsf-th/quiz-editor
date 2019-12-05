@@ -191,8 +191,10 @@ export class AppComponent implements OnInit {
   }
 
   getNewQuizzes() {
-    return this.quizzes
+    const newQuizzes = this.quizzes
       .filter(x => x.newlyAddedQuiz);
+    console.log(newQuizzes);
+    return newQuizzes;
   }
 
   saveBatchEdits() {
