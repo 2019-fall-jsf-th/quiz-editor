@@ -190,20 +190,27 @@ export class AppComponent implements OnInit {
       );
   }
 
-  mappedQuizQuestions() {
-    return this.getAddedQuizzes().map(x => ({
-      questions: x.questions.map(y => y.name)
-    }))
-  }
+  // // Not sure why but this was not working. I wouldve preferred this method to prevent the saveBatchEdits from getting to messy
+  // mappedQuizQuestions() {
+  //   return this.getAddedQuizzes().map(x => ({
+  //     questions: x.questions.map(y => y.name)
+  //   }))
+  // }
 
   saveBatchEdits() {
+    // shape data of new quiz as per azure feature requirment/blueprint
+
+    // first, map the the data found wihtin a new quiz (the name and the questions) to one variable 
+    let newQuizData = this.getAddedQuizzes().map( x => ({
+      "quizName": x.name
+      , "quizQuestions": x.questions.map(x => x.name)
+    }));
+    // send both edited quizzes to save and new quzzes to save via azure function
     this.qSvc.saveQuizzes(
-      this.getEditedQuizzes(),
-      this.getAddedQuizzes().map( x => ({
-        quizNameSave: x.name,
-        quizQuestionsSave: this.mappedQuizQuestions()
-      }))
+      this.getEditedQuizzes()
+      , newQuizData
     )
+    // our headers - will either return number of quizzes saved or error
     .subscribe(
       data => console.log('Number of edited quizzes submitted: ' + data)
       , err => console.error(err)
