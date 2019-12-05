@@ -33,7 +33,7 @@ export class QuizService {
       , JSON.stringify(
         {
           "changedQuizzes": changedQuizzes
-          , "newQuizzes": newQuizzes
+          , "newQuizzes": [{name: "Hello", questions: ["world?"]}]
         }
       )
       , {

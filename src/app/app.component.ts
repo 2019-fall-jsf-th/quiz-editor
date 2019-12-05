@@ -190,6 +190,11 @@ export class AppComponent implements OnInit {
       );
   }
 
+  getNewQuizzes() {
+    return this.quizzes
+      .filter(x => x.newlyAddedQuiz);
+  }
+
   saveBatchEdits() {
     this.qSvc.saveQuizzes(
       this.getEditedQuizzes()
