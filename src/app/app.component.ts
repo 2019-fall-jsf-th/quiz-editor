@@ -216,9 +216,16 @@ export class AppComponent implements OnInit {
   }
 
   saveBatchEdits() {
+    // shape newly added quiz data
+    // use map - will go over (read?) each element in the array
+    let newQuizData = this.getAddedQuizzes().map(x => ({
+        quizName: x.name
+        , quizQuestions: x.questions.map(x => x.name) // map will create a new array for the quizQuestions
+    }));
+    
     this.qSvc.saveQuizzes(
       this.getEditedQuizzes()
-      , []
+      , newQuizData
     )
     .subscribe(
       data => console.log('Number of edited quizzes submitted:' + data)
