@@ -217,7 +217,7 @@ export class AppComponent implements OnInit {
 
   saveBatchEdits() {
     // shape newly added quiz data
-    // use map - will go over (read?) each element in the array
+    // use map - will go over (read?) each element in the array and creates new object
     let newQuizData = this.getAddedQuizzes().map(x => ({
         quizName: x.name
         , quizQuestions: x.questions.map(x => x.name) // map will create a new array for the quizQuestions
