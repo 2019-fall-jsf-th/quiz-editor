@@ -1,7 +1,8 @@
 <p>
     <ngb-progressbar
-        [type]="progressType"
+        [max]="getMaxProgress()"
         [value]="getCurrentProgressPercent()"
-        [height]="getCurrentHeightRems()">
+        [height]="getCurrentHeightRems()"
+        [type]="progressType"
     >{{ currentProgress }}</ngb-progressbar>
 </p>

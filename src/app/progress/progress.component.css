@@ -1,0 +1,14 @@
+@keyframes name-here {
+    0% { transform: translateX(-30px) }
+    25% { transform: translateX(-20px) }
+    50% { transform: translateX(-10px) }
+    75% { transform: translateX(-5px) }
+    100% { transform: translateX(-0px) }
+}
+
+.anudda-name-here {
+    animation-name: name-here;
+    animation-delay: : 100ms;
+    animation-duration: 0.75s;
+    transform-origin: top left;
+}

@@ -7,9 +7,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ProgressComponent implements OnInit {
 
-  public maxProgress = 100;
-  @Input() progressType: string = '';
-  @Input() currentProgress: number = 0;
+  @Input() maxProgress = 100;
+  @Input() progressType: string = 'primary';
+  @Input() currentProgress: number = 50;
   @Input() currentHeight: number = .97;
 
   constructor() { }
@@ -28,4 +28,7 @@ export class ProgressComponent implements OnInit {
     return `${ this.currentHeight }rem`;
   }
 
+  getMaxProgress() {
+    return this.maxProgress;
+  }
 }
