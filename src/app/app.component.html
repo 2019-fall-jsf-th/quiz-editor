@@ -70,110 +70,122 @@
     </div>
     <div 
       class="col-md-8"
-      *ngIf="selectedQuiz != undefined"
+      [@detailsFromLeft]="detailsAnimationState"
+      (@detailsFromLeft.done)="detailsAnimationComplete"
     >
-      <button 
-        class="btn mb-3"
-        [class.btn-outline-dark]="numberOfDeletedQuizzes + numberOfAddedQuizzes + numberOfEditedQuizzes === 0"
-        [class.btn-dark]="numberOfDeletedQuizzes + numberOfAddedQuizzes + numberOfEditedQuizzes > 0"
-        (click)="saveBatchEdits()"
+      <div 
+        *ngIf="selectedQuiz != undefined"
       >
-        Save Quizzes
-        <span
-          class="badge badge-danger ml-1"
-          *ngIf="numberOfDeletedQuizzes > 0"
-        >
-          -{{ numberOfDeletedQuizzes }}
-        </span>
-        <span
-          class="badge badge-success ml-1"
-          *ngIf="numberOfAddedQuizzes > 0"
-        >
-          +{{ numberOfAddedQuizzes }}
-        </span>
-        <span
-          class="badge badge-light ml-1"
-          *ngIf="numberOfEditedQuizzes > 0"
-        >
-          *{{ numberOfEditedQuizzes }}
-        </span>
-      </button>
-      <button 
-        class="btn btn-link mb-3"
-        (click)="cancelBatchEdits()"
+
+      <div
+        [@pulseSaveCancelButtons]="numberOfDeletedQuizzes + numberOfAddedQuizzes + numberOfEditedQuizzes > 0 ? 'somethingToSave' : 'nothingToSave'"
       >
-        Cancel
-      </button>
-      <div class="card mb-3">
-        <div class="card-header">
-          General
-        </div>
-        <div class="card-body">
-          <input 
-            class="form-control"
-            type="text"
-            [(ngModel)]="selectedQuiz.name"
-          >
-        </div>
-      </div>
-      <div class="card mb-3">
-        <div class="card-header">
-          Questions
+        <button 
+          class="btn mb-3"
+          [class.btn-outline-dark]="numberOfDeletedQuizzes + numberOfAddedQuizzes + numberOfEditedQuizzes === 0"
+          [class.btn-dark]="numberOfDeletedQuizzes + numberOfAddedQuizzes + numberOfEditedQuizzes > 0"
+          (click)="saveBatchEdits()"
+        >
+          Save Quizzes
           <span
-            *ngIf="selectedQuiz.questions.length == 0"
-            class="text-danger"
+            class="badge badge-danger ml-1"
+            *ngIf="numberOfDeletedQuizzes > 0"
           >
-            (No Questions)
+            -{{ numberOfDeletedQuizzes }}
           </span>
-        </div>
-        <div class="card-body">
-          <button 
-          class="btn btn-outline-success mb-3"
-          (click)="addNewQuestion()"
-        >
-          Add New Question
+          <span
+            class="badge badge-success ml-1"
+            *ngIf="numberOfAddedQuizzes > 0"
+          >
+            +{{ numberOfAddedQuizzes }}
+          </span>
+          <span
+            class="badge badge-light ml-1"
+            *ngIf="numberOfEditedQuizzes > 0"
+          >
+            *{{ numberOfEditedQuizzes }}
+          </span>
         </button>
-        <div
-          *ngFor="let question of this.selectedQuiz.questions"
-          class="form-row"
+        <button 
+          class="btn btn-link mb-3"
+          (click)="cancelBatchEdits()"
         >
-          <input 
-            class="form-control col-md-10 mb-3"
-            type="text"
-            [(ngModel)]="question.name"
-          >
-          <button 
-            class="btn btn-link text-danger col-md-2 mb-3"
-            (click)="removeQuestion(question)"
-          >
-            Remove
-          </button>
-        </div>
-        </div>
+          Cancel
+        </button>
       </div>
-        <div class="card">
+        
+        <div class="card mb-3">
           <div class="card-header">
-            Other
+            General
           </div>
           <div class="card-body">
-            <div class="form-check">
-              <input 
-                class="form-check-input" 
-                type="checkbox" 
-                id="defaultCheck1"
-                [(ngModel)]="selectedQuiz.markedForDelete"
-              >
-              <label 
-                class="form-check-label" 
-                for="defaultCheck1"
-                [class.text-danger]="selectedQuiz.markedForDelete"
-              >
-                Marked for Delete
-              </label>
+            <input 
+              class="form-control"
+              type="text"
+              [(ngModel)]="selectedQuiz.name"
+            >
+          </div>
+        </div>
+        <div class="card mb-3">
+          <div class="card-header">
+            Questions
+            <span
+              *ngIf="selectedQuiz.questions.length == 0"
+              class="text-danger"
+            >
+              (No Questions)
+            </span>
+          </div>
+          <div class="card-body">
+            <button 
+            class="btn btn-outline-success mb-3"
+            (click)="addNewQuestion()"
+          >
+            Add New Question
+          </button>
+          <div
+            *ngFor="let question of this.selectedQuiz.questions"
+            class="form-row"
+          >
+            <input 
+              class="form-control col-md-10 mb-3"
+              type="text"
+              [(ngModel)]="question.name"
+            >
+            <button 
+              class="btn btn-link text-danger col-md-2 mb-3"
+              (click)="removeQuestion(question)"
+            >
+              Remove
+            </button>
+          </div>
+          </div>
+        </div>
+          <div class="card">
+            <div class="card-header">
+              Other
+            </div>
+            <div class="card-body">
+              <div class="form-check">
+                <input 
+                  class="form-check-input" 
+                  type="checkbox" 
+                  id="defaultCheck1"
+                  [(ngModel)]="selectedQuiz.markedForDelete"
+                >
+                <label 
+                  class="form-check-label" 
+                  for="defaultCheck1"
+                  [class.text-danger]="selectedQuiz.markedForDelete"
+                >
+                  Marked for Delete
+                </label>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+    </div>
+    
   </div>
 </div>
 
