@@ -233,6 +233,10 @@ export class AppComponent implements OnInit {
     );
   }
 
-  
+  detailsAnimationState: string = 'leftPosition';
+
+  detailsAnimationComplete() {
+    this.detailsAnimationState = 'leftPosition';
+  }
 
 }
