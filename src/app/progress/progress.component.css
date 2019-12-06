@@ -8,7 +8,7 @@
 
 .anudda-name-here {
     animation-name: name-here;
-    animation-delay: : 100ms;
+    animation-delay: 100ms;
     animation-duration: 0.75s;
     transform-origin: top left;
 }
