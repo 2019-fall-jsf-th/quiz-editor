@@ -190,17 +190,10 @@ export class AppComponent implements OnInit {
       );
   }
 
-  getNewQuizzes() {
-    const newQuizzes = this.quizzes
-      .filter(x => x.newlyAddedQuiz);
-    console.log(newQuizzes);
-    return newQuizzes;
-  }
-
   saveBatchEdits() {
     this.qSvc.saveQuizzes(
       this.getEditedQuizzes()
-      , this.getNewQuizzes().map(x => {x.name})
+      , this.getAddedQuizzes().map(x => {x.name})
     )
     .subscribe(
       data => console.log('Number of edited quizzes submitted: ' + data)
