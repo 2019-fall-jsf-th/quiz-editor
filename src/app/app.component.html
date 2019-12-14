@@ -1,35 +1,42 @@
 <div class="container" style="margin: 20px;">
   <div class="row">
     <div class="col-md-4">
-      <button 
-        class="btn btn-outline-success mb-3"
-        (click)='addQuiz()'
-      >
+      <button class="btn btn-outline-success mb-3">
         Add New Quiz
       </button>
       <div class="list-group mb-3">
-        <div class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let q of quizzes"
-          (click)="selectQuiz(q)" [class.active]="q == selectedQuiz">
+        <div 
+          class="list-group-item d-flex justify-content-between align-items-center"
+          *ngFor="let q of quizzes"
+          (click)="selectQuiz(q)"
+          [class.active]="q == selectedQuiz"
+        >
           {{ q.name }}
-          <small class="font-italic font-weight-lighter">
-            {{ q.numberOfQuestions }} questions
-          </small>
+          <small>{{ q.questionCount }} question(s)</small>
         </div>
       </div>
     </div>
-    <div class="col-md-8" *ngIf="selectedQuiz == undefined">
-      <div class="card bg-light mb-3 text-center">
+    <div 
+      class="col-md-8"
+      *ngIf="selectedQuiz == undefined"
+    >
+      <div class="card bg-light text-center">
         <div class="card-body">
-          <h5 class="card-title">No Quiz Selected</h5>
+          <h5 class="card-title">
+            No Quiz Selected
+          </h5>
           <p class="card-text">
-            Please select or add a new quiz to get started...
+            Please select or add a new quiz...
           </p>
         </div>
       </div>
     </div>
-    <div class="col-md-8" *ngIf="selectedQuiz != undefined">
+    <div 
+      class="col-md-8"
+      *ngIf="selectedQuiz != undefined"
+    >
       <button class="btn btn-outline-dark mb-3">
-        Save Quizze<b>s</b>
+        Save Quizzes
       </button>
       <button class="btn btn-link mb-3">
         Cancel
@@ -39,11 +46,7 @@
           General
         </div>
         <div class="card-body">
-          <!-- {{ selectedQuiz.name }} -->
-          <input
-            type="text"
-            class="form-control"
-          >
+          {{ selectedQuiz.name }}
         </div>
       </div>
       <div class="card mb-3">
@@ -54,14 +57,20 @@
           Coming soon!
         </div>
       </div>
-      <div class="card mb-3">
-        <div class="card-header">
-          Other
-        </div>
-        <div class="card-body">
-          Coming soon!
+        <div class="card">
+          <div class="card-header">
+            Other
+          </div>
+          <div class="card-body">
+            Coming soon!
+          </div>
         </div>
       </div>
-    </div>
   </div>
 </div>
+
+
+
+
+
+

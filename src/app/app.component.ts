@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { QuizService, QuizDisplay } from './quiz.service';
+import { Component } from '@angular/core';
+import { QuizService } from './quiz.service';
 
 @Component({
   selector: 'app-root',
@@ -9,37 +9,27 @@ import { QuizService, QuizDisplay } from './quiz.service';
 export class AppComponent implements OnInit {
   title = 'quiz-editor';
 
-  myBackgroundColorProperty = "purple";
-  quizzes: QuizDisplay[] = [];
+  //propName = 'Purple';
+  private random = Math.random();
+  propName = this.random > 0.5 ? 'Green' : 'Yellow';
+  borderRadius = this.random > 0.5 ? '30px' : '0px';
 
-  ngOnInit() {
-    this.myBackgroundColorProperty = Math.random() > 0.5 ? 'yellow' : 'green';
-    this.quizzes = this.qSvc.loadQuizzes();
-  }
+  toolTipText = `The color is ${this.propName} ${this.random}`;
 
-  get titleTooltip() {
-    return `The background color is ${this.myBackgroundColorProperty}`;
-  }
+  someHtmlString = '<h1>Tom Steele</h1>';
+
+  quizzes = [];
 
   constructor(private qSvc: QuizService) {
+    this.quizzes = this.qSvc.loadQuizzes();
+    console.log(this.quizzes);
   }
 
-  selectedQuiz: QuizDisplay = undefined;
+  selectedQuiz = undefined;
 
-  selectQuiz(q: QuizDisplay) {
+  selectQuiz(q) {
     this.selectedQuiz = q;
-  }
-
-  
-  addQuiz() {
-    // console.log('working');
-
-    const newQuiz = {
-      name:'Untitled Quiz', numberOfQuestions: 0
-    }
-    this.quizzes.push(newQuiz);
-
-    
+    console.log(this.selectedQuiz.name);
   }
 }
 
