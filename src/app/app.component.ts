@@ -192,7 +192,7 @@ export class AppComponent implements OnInit {
   saveBatchEdits() {
     this.qSvc.saveQuizzes(
       this.getEditedQuizzes(),
-      []
+      this.getAddedQuizzes().map(x => {x.name})
     )
     .subscribe(
       data => console.log('Number of edited quizzes submitted: ' + data)
