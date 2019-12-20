@@ -8,18 +8,9 @@ import { QuizService, QuizDisplay } from './quiz.service';
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {
-    throw new Error("Method not implemented.");
   }
   title = 'quiz-editor';
 
-  //propName = 'Purple';
-  private random = Math.random();
-  propName = this.random > 0.5 ? 'Green' : 'Yellow';
-  borderRadius = this.random > 0.5 ? '30px' : '0px';
-
-  toolTipText = `The color is ${this.propName} ${this.random}`;
-
-  someHtmlString = '<h1>Tom Steele</h1>';
 
   quizzes: QuizDisplay[] = [];
 
@@ -48,6 +39,8 @@ export class AppComponent implements OnInit {
 
     this.selectQuiz(newQuiz);
   }
+
+  
 }
 
 
