@@ -1,35 +1,64 @@
 <div class="container" style="margin: 20px;">
-  <div class="row">
+  <div 
+    class="row"
+    *ngIf="failedToLoadQuizzes"
+  >
+    <h3>Failed to load quizzes, please refresh page to try again...</h3>
+  </div>
+  <div 
+    class="row"
+    *ngIf="!failedToLoadQuizzes"
+  >
     <div class="col-md-4">
       <button 
-        class="btn btn-outline-success mb-3"
+        class="btn btn-outline-success mb-3" 
         (click)="createNewQuiz()"
       >
         Add New Quiz
       </button>
+      
       <div class="list-group mb-3">
-        <div class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let q of quizzes"
-          (click)="selectQuiz(q)" [class.active]="q == selectedQuiz">
+        <button 
+          class="list-group-item d-flex justify-content-between align-items-center"
+          *ngFor="let q of quizzes"
+          (click)="selectQuiz(q)"
+          [class.active]="q == selectedQuiz"
+        >
           {{ q.name }}
-          <small class="font-italic font-weight-lighter">
-            {{ q.numberOfQuestions }} questions
+          
+          <small
+            class="font-italic font-weight-lighter"
+            [class.text-danger]="q.questions.length == 0 && q != selectedQuiz"
+            [class.text-white]="q == selectedQuiz"
+          >
+            {{ q.questions.length }} questions
           </small>
-        </div>
+          </button>
       </div>
     </div>
-    <div class="col-md-8" *ngIf="selectedQuiz == undefined">
-      <div class="card bg-light mb-3 text-center">
+    
+    <div 
+      class="col-md-8"
+      *ngIf="selectedQuiz == undefined"
+    >
+      <div class="card bg-light text-center">
         <div class="card-body">
-          <h5 class="card-title">No Quiz Selected</h5>
+          <h5 class="card-title">
+            No Quiz Selected
+          </h5>
           <p class="card-text">
-            Please select or add a new quiz to get started...
+            Please select or add a new quiz...
           </p>
         </div>
       </div>
     </div>
-    <div class="col-md-8" *ngIf="selectedQuiz != undefined">
+    
+    <div 
+      class="col-md-8"
+      *ngIf="selectedQuiz != undefined"
+    >
       <button class="btn btn-outline-dark mb-3">
-        Save Quizze<b>s</b>
+        Save Quizzes
       </button>
       <button class="btn btn-link mb-3">
         Cancel
@@ -41,33 +70,60 @@
         <div class="card-body">
           <input 
             class="form-control"
-            type="any"
+            type="text" 
             [(ngModel)]="selectedQuiz.name"
-            name="selected-quiz-name"
           >
         </div>
       </div>
       <div class="card mb-3">
         <div class="card-header">
           Questions
+          <span
+            *ngIf="selectedQuiz.questions.length == 0"
+            class="text-danger"
+          >
+            (No Questions)
+          </span>
         </div>
         <div class="card-body">
-          <button 
+          <div 
+            class="form-row"
+            *ngFor="let question of this.selectedQuiz.questions"
+          >
+            <input 
+              class="form-control mb-3 col-md-10"
+              type="text"
+              [(ngModel)]="question.name"
+            >
+            <button
+              (click)="removeQuestion(question)"
+              class="btn btn-link mb-3 col-md-2"
+            >
+              Remove
+            </button>
+          </div>
+          <button
             class="btn btn-outline-success mb-3"
             (click)="addNewQuestion()"
           >
-            Add New Question
+            Add Question
           </button>
         </div>
       </div>
-      <div class="card mb-3">
-        <div class="card-header">
-          Other
-        </div>
-        <div class="card-body">
-          Coming soon!
+        <div class="card">
+          <div class="card-header">
+            Other
+          </div>
+          <div class="card-body">
+            Coming soon!
+          </div>
         </div>
       </div>
-    </div>
   </div>
 </div>
+
+
+
+
+
+
