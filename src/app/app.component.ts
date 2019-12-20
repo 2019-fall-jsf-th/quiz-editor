@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { QuizService, QuizDisplay } from './quiz.service';
+import { QuizService } from './quiz.service';
+
+interface QuizDisplay {
+  name: string;
+  temporaryQuestionCount: number;
+}
 
 @Component({
   selector: 'app-root',
@@ -9,32 +14,57 @@ import { QuizService, QuizDisplay } from './quiz.service';
 export class AppComponent implements OnInit {
   title = 'quiz-editor';
 
-  myBackgroundColorProperty = "purple";
+  //propName = 'Purple';
+  private random = Math.random();
+  propName = this.random > 0.5 ? 'Green' : 'Yellow';
+  borderRadius = this.random > 0.5 ? '30px' : '0px';
+
+  toolTipText = `The color is ${this.propName} ${this.random}`;
+
+  someHtmlString = '<h1>Tom Steele</h1>';
+
   quizzes: QuizDisplay[] = [];
 
+  constructor(private qSvc: QuizService) {}
+
+  failedToLoadQuizzes = false;
+
   ngOnInit() {
-    this.myBackgroundColorProperty = Math.random() > 0.5 ? 'yellow' : 'green';
-    this.quizzes = this.qSvc.loadQuizzes();
+    
+    //this.quizzes = [];
+    
+    this.qSvc
+      .loadQuizzes()
+      .subscribe(
+        data => {
+          console.log(data);
+          console.log('woo hoo');
+          this.quizzes = (<any[]> data).map(x => ({
+            name: x.name
+            , temporaryQuestionCount: x.questions.length
+          }));
+        }
+        , error => {
+          console.error(error.error);
+          this.failedToLoadQuizzes = true;
+        }
+      )
+
+    console.log(this.quizzes);
   }
 
-  get titleTooltip() {
-    return `The background color is ${this.myBackgroundColorProperty}`;
-  }
+  selectedQuiz = undefined;
 
-  constructor(private qSvc: QuizService) {
-  }
-
-  selectedQuiz: QuizDisplay = undefined;
-
-  selectQuiz(q: QuizDisplay) {
+  selectQuiz(q) {
     this.selectedQuiz = q;
+    console.log(this.selectedQuiz.name);
   }
 
-  createNewQuiz() {
+  addNewQuiz() {
 
     const newQuiz = { 
       name: 'Untitled Quiz'
-      , numberOfQuestions: 0 
+      , temporaryQuestionCount: 0
     };
 
     this.quizzes = [
@@ -46,6 +76,6 @@ export class AppComponent implements OnInit {
   }
 
   addNewQuestion() {
-    // console.log("this works!")
+    // console.log('This works!')
   }
 }
