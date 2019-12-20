@@ -29,4 +29,19 @@ export class AppComponent implements OnInit {
   selectQuiz(q: QuizDisplay) {
     this.selectedQuiz = q;
   }
+
+  createNewQuiz() {
+
+    const newQuiz = { 
+      name: 'Untitled Quiz'
+      , numberOfQuestions: 0 
+    };
+
+    this.quizzes = [
+      ...this.quizzes
+      , newQuiz
+    ];
+
+    this.selectQuiz(newQuiz);
+  }
 }
