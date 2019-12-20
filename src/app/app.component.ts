@@ -44,4 +44,8 @@ export class AppComponent implements OnInit {
 
     this.selectQuiz(newQuiz);
   }
+
+  addNewQuestion() {
+    // console.log("this works!")
+  }
 }
