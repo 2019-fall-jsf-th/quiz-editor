@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QuizService } from './quiz.service';
+import { QuizService, QuizDisplay } from './quiz.service';
 
 @Component({
   selector: 'app-root',
@@ -21,31 +21,32 @@ export class AppComponent implements OnInit {
 
   someHtmlString = '<h1>Tom Steele</h1>';
 
-  quizzes = [];
+  quizzes: QuizDisplay[] = [];
 
   constructor(private qSvc: QuizService) {
     this.quizzes = this.qSvc.loadQuizzes();
     console.log(this.quizzes);
   }
 
-  selectedQuiz = undefined;
+  selectedQuiz: QuizDisplay = undefined;
 
-  selectQuiz(q) {
+  selectQuiz(q: QuizDisplay) {
     this.selectedQuiz = q;
-    console.log(this.selectedQuiz.name);
   }
   
   createNewQuiz() {
     // console.log('new quiz button works')
 
     const newQuiz = {
-      name: "New Quiz", numberOfQuestions: 0
+      name: "New Quiz", questionCount: 0
     }
 
     this.quizzes = [
       ...this.quizzes
       , newQuiz
     ];
+
+    this.selectQuiz(newQuiz);
   }
 }
 

@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
 
+export interface QuizDisplay {
+  name: string;
+  questionCount: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class QuizService {
 
   constructor() { }
 
-  loadQuizzes() {
+  loadQuizzes(): QuizDisplay[] {
 
     return [
       { name: "Quiz 1", questionCount: 10 }
